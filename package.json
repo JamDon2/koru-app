@@ -2,11 +2,13 @@
   "name": "koru-app",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare": "husky"
   },
   "packageManager": "pnpm@10.10.0",
   "devDependencies": {
     "eslint": "^9.26.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.0.0",
     "prettier": "^3.5.3",
     "turbo": "^2.5.3",
     "typescript": "^5.8.3"

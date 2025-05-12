@@ -1,0 +1,87 @@
+echo "🛡️ Running pre-commit checks..."
+
+STASH_WAS_APPLIED=false # Flag to track if we actually created/used a stash
+
+# This function will be called on script exit (normal or error) or interrupt.
+cleanup() {
+  EXIT_CODE=$? # Capture the exit code of the last command before cleanup
+
+  if [ "$STASH_WAS_APPLIED" = true ]; then
+    echo "🔄 Restoring stashed changes..."
+    # Attempt to pop the most recent stash (stash@{0}). --index tries to restore staged/unstaged state.
+    if git stash pop --index -q; then
+      echo "✅ Stashed changes restored."
+    else
+      echo "⚠️ Warning: Failed to pop the stash automatically (tried to pop stash@{0})."
+      echo "   Your unstaged work might still be in the stash."
+      echo "   Run 'git stash list' to see stashes and 'git stash pop' or 'git stash apply' to restore."
+      echo "   The stash entry should have a message like 'husky-pre-commit-autostash'."
+    fi
+  fi
+
+  if [ $EXIT_CODE -ne 0 ]; then
+    echo "❌ Pre-commit checks FAILED. Commit aborted."
+  else
+    echo "🎉 Pre-commit checks PASSED."
+  fi
+  exit $EXIT_CODE # Exit with the captured exit code
+}
+
+# Set up the trap to call the cleanup function on EXIT, INT (Ctrl+C), TERM.
+trap cleanup EXIT INT TERM
+
+# --- 1. Stash unstaged and untracked changes ---
+# Check if there are any unstaged changes to tracked files OR any untracked files.
+if ! git diff --quiet HEAD || [ -n "$(git ls-files --others --exclude-standard)" ]; then
+  echo "🔄 Stashing unstaged and untracked changes..."
+  # --keep-index: leaves staged changes in the working dir and index.
+  # --include-untracked: stashes untracked files as well.
+  # -q: quiet.
+  # -m: message for the stash.
+  git stash push --keep-index --include-untracked -q -m "husky-pre-commit-autostash"
+
+  # After `git stash push`, verify if a stash entry was actually created.
+  # `git stash push` (modern Git) exits 0 even if nothing was stashed, but won't create an entry.
+  # `refs/stash` existing implies at least one stash entry is present.
+  if git rev-parse --verify --quiet refs/stash >/dev/null 2>&1; then
+    STASH_WAS_APPLIED=true
+    echo "✅ Unstaged changes stashed. Linting will run on staged content."
+  else
+    # This means `git stash push` ran, but no stash entry was actually created (e.g., really nothing to stash).
+    echo "🤔 No actual changes to stash. Proceeding."
+    # STASH_WAS_APPLIED remains false, so cleanup won't try to pop.
+  fi
+else
+  echo "✨ Working directory clean or all changes already staged. No stash needed."
+fi
+
+# At this point, the working directory reflects the state of the staged files.
+# Untracked/unstaged changes are in the stash if STASH_WAS_APPLIED is true.
+
+# --- 2. Run your linters and formatters ---
+echo "🔎 Running linters..."
+pnpm turbo run lint # If this fails, `set -e` will cause the script to exit, and `trap` will run `cleanup`.
+echo "✅ Linting finished."
+
+echo "💅 Running formatters..."
+pnpm turbo run format # If this fails, `set -e` will cause the script to exit, and `trap` will run `cleanup`.
+echo "✅ Formatting finished."
+
+# --- 3. Stage any auto-fixes ---
+# If linters/formatters modified files, they need to be re-staged.
+# `git status --porcelain` will be non-empty if there are changes in the working dir.
+echo "💾 Staging changes made by linters/formatters (if any)..."
+if [ -n "$(git status --porcelain)" ]; then
+  git add . # Stages all modifications and new (untracked by git) files.
+            # Since untracked-unstaged files were stashed, this should be safe.
+  echo "✅ Auto-fixes staged."
+else
+  echo "No auto-fixes to stage."
+fi
+
+# --- 4. Cleanup and Exit ---
+# The script will now naturally exit.
+# If all commands succeeded, the exit code will be 0.
+# If any command failed (due to `set -e`), the script would have exited earlier with a non-zero code.
+# In both cases, the `trap cleanup EXIT` will execute the cleanup function.
+# No explicit `exit 0` is needed here; the trap handles the final message and exit status.
