@@ -6,7 +6,8 @@
     "dev": "uv run uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload --app-dir .",
     "lint": "uv run ruff check . && uv run mypy .",
     "format": "uv run ruff format .",
-    "start": "uv run uvicorn api.main:app --host 0.0.0.0 --port 8000 --app-dir ."
+    "start": "uv run uvicorn api.main:app --host 0.0.0.0 --port 8000 --app-dir .",
+    "generate-openapi": "uv run scripts/generate-openapi.py"
   },
   "dependencies": {}
 }
