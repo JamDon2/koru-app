@@ -6,11 +6,26 @@ STASH_WAS_APPLIED=false # Flag to track if we actually created/used a stash
 cleanup() {
   EXIT_CODE=$? # Capture the exit code of the last command before cleanup
 
+  # If the script failed (e.g., linting error after codegen/formatting)
+  # reset any changes made by hooks during this run.
+  if [ $EXIT_CODE -ne 0 ]; then
+    echo "🚫 Script failed. Discarding changes made by hooks during this run..."
+    # Reset any changes to tracked files to their state as of the last commit + what was staged.
+    # This effectively undoes what codegen/formatters did to already tracked files.
+    git reset --hard -q HEAD
+    echo "✅ Hook-induced changes discarded."
+  fi
+
+  # If a stash was created at the beginning, try to restore it
   if [ "$STASH_WAS_APPLIED" = true ]; then
     echo "🔄 Restoring stashed changes..."
     # Attempt to pop the most recent stash (stash@{0}). --index tries to restore staged/unstaged state.
     if git stash pop --index -q; then
       echo "✅ Stashed changes restored."
+      # Re-run codegen if a stash was popped to ensure client is in sync
+      echo "🔄 Re-running codegen after stash pop..."
+      pnpm generate:api-client
+      echo "✅ Codegen finished."
     else
       echo "⚠️ Warning: Failed to pop the stash automatically (tried to pop stash@{0})."
       echo "   Your unstaged work might still be in the stash."
@@ -59,16 +74,21 @@ fi
 # Untracked/unstaged changes are in the stash if STASH_WAS_APPLIED is true.
 
 # --- 2. Run your linters and formatters ---
+# If any of these commands fail, `set -e` will cause the script to exit, and `trap` will run `cleanup`.
 echo "🔎 Running linters..."
-pnpm turbo run lint # If this fails, `set -e` will cause the script to exit, and `trap` will run `cleanup`.
+pnpm turbo run lint 
 echo "✅ Linting finished."
 
+echo "🔄 Running codegen..."
+pnpm generate:api-client
+echo "✅ Codegen finished."
+
 echo "💅 Running formatters..."
-pnpm turbo run format # If this fails, `set -e` will cause the script to exit, and `trap` will run `cleanup`.
+pnpm turbo run format
 echo "✅ Formatting finished."
 
 # --- 3. Stage any auto-fixes ---
-# If linters/formatters modified files, they need to be re-staged.
+# If something modified files, they need to be re-staged.
 # `git status --porcelain` will be non-empty if there are changes in the working dir.
 echo "💾 Staging changes made by linters/formatters (if any)..."
 if [ -n "$(git status --porcelain)" ]; then

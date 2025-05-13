@@ -2,7 +2,8 @@
   "name": "koru-app",
   "private": true,
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "generate:api-client": "pnpm --filter api run generate-openapi && pnpm --filter api-client run build"
   },
   "packageManager": "pnpm@10.10.0",
   "devDependencies": {

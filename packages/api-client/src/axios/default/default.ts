@@ -4,7 +4,7 @@
  * FastAPI
  * OpenAPI spec version: 0.1.0
  */
-import type { User } from "../../model";
+import type { User, UserResponse } from "../../model";
 
 import { customInstance } from "../../lib/axiosInstance";
 
@@ -24,7 +24,7 @@ export const helloWorld = () => {
  * @summary Create User
  */
 export const createUser = (user: User) => {
-  return customInstance<unknown>({
+  return customInstance<UserResponse>({
     url: `/users`,
     method: "POST",
     headers: { "Content-Type": "application/json" },

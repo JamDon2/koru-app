@@ -20,7 +20,7 @@ import type {
   UseQueryResult,
 } from "@tanstack/react-query";
 
-import type { HTTPValidationError, User } from "../../model";
+import type { HTTPValidationError, User, UserResponse } from "../../model";
 
 import { customInstance } from "../../lib/axiosInstance";
 import type { ErrorType } from "../../lib/axiosInstance";
@@ -277,7 +277,7 @@ export function useHelloWorld<
  * @summary Create User
  */
 export const createUser = (user: User, signal?: AbortSignal) => {
-  return customInstance<unknown>({
+  return customInstance<UserResponse>({
     url: `/users`,
     method: "POST",
     headers: { "Content-Type": "application/json" },

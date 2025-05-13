@@ -24,4 +24,6 @@ export const createUserBody = zod.object({
   email: zod.string(),
 });
 
-export const createUserResponse = zod.any();
+export const createUserResponse = zod.object({
+  message: zod.string(),
+});
