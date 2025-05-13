@@ -5,6 +5,10 @@ function getApiBaseUrl(): string {
     return process.env.NEXT_PUBLIC_API_URL;
   }
 
+  if (typeof process !== "undefined" && process.env.EXPO_PUBLIC_API_URL) {
+    return process.env.EXPO_PUBLIC_API_URL;
+  }
+
   if (typeof process !== "undefined" && process.env.API_URL) {
     return process.env.API_URL;
   }
@@ -20,7 +24,7 @@ export const customInstance = <T>(config: AxiosRequestConfig): Promise<T> => {
   const source = Axios.CancelToken.source();
 
   const promise = AXIOS_INSTANCE({ ...config, cancelToken: source.token }).then(
-    ({ data }) => data,
+    ({ data }) => data
   );
 
   // @ts-ignore
