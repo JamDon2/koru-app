@@ -22,11 +22,6 @@
       "types": "./dist/zod/index.d.ts",
       "require": "./dist/zod/index.js",
       "import": "./dist/zod/index.js"
-    },
-    "./model": {
-      "types": "./dist/model/index.d.ts",
-      "require": "./dist/model/index.js",
-      "import": "./dist/model/index.js"
     }
   },
   "files": [
