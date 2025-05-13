@@ -43,6 +43,9 @@ importers:
       '@react-navigation/native':
         specifier: ^7.1.6
         version: 7.1.9(react-native@0.79.2(@babel/core@7.27.1)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
+      '@tanstack/react-query':
+        specifier: ^5.76.0
+        version: 5.76.0(react@19.0.0)
       api-client:
         specifier: workspace:*
         version: link:../../packages/api-client
