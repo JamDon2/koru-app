@@ -4,7 +4,7 @@
  * FastAPI
  * OpenAPI spec version: 0.1.0
  */
-import type { User, UserResponse } from "../../model";
+import type { MessageResponse, User } from "../../model";
 
 import { customInstance } from "../../lib/axiosInstance";
 
@@ -12,19 +12,19 @@ import { customInstance } from "../../lib/axiosInstance";
  * @summary Root
  */
 export const root = () => {
-  return customInstance<unknown>({ url: `/`, method: "GET" });
+  return customInstance<MessageResponse>({ url: `/`, method: "GET" });
 };
 /**
  * @summary Hello World
  */
 export const helloWorld = () => {
-  return customInstance<unknown>({ url: `/hello`, method: "GET" });
+  return customInstance<MessageResponse>({ url: `/hello`, method: "GET" });
 };
 /**
  * @summary Create User
  */
 export const createUser = (user: User) => {
-  return customInstance<UserResponse>({
+  return customInstance<MessageResponse>({
     url: `/users`,
     method: "POST",
     headers: { "Content-Type": "application/json" },

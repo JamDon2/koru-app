@@ -36,21 +36,21 @@ class User(BaseModel):
     email: str
 
 
-class UserResponse(BaseModel):
+class MessageResponse(BaseModel):
     message: str
 
 
 @app.get("/")
-async def root():
+async def root() -> MessageResponse:
     # This endpoint is less relevant when running via Uvicorn directly on main:app
-    return {"message": "Hello from FastAPI Backend (root of app object)!"}
+    return MessageResponse(message="Hello from FastAPI Backend (root of app object)!")
 
 
 @app.get("/hello")
-async def hello_world():
-    return {"message": "API says: Hello World, from Python!"}
+async def hello_world() -> MessageResponse:
+    return MessageResponse(message="API says: Hello World, from Python!")
 
 
 @app.post("/users")
-async def create_user(user: User) -> UserResponse:
-    return UserResponse(message="User created successfully!")
+async def create_user(user: User) -> MessageResponse:
+    return MessageResponse(message="User created successfully!")

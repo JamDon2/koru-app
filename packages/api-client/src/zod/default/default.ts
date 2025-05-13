@@ -9,12 +9,16 @@ import { z as zod } from "zod";
 /**
  * @summary Root
  */
-export const rootResponse = zod.any();
+export const rootResponse = zod.object({
+  message: zod.string(),
+});
 
 /**
  * @summary Hello World
  */
-export const helloWorldResponse = zod.any();
+export const helloWorldResponse = zod.object({
+  message: zod.string(),
+});
 
 /**
  * @summary Create User

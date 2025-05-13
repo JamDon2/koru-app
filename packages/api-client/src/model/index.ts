@@ -6,7 +6,7 @@
  */
 
 export * from "./hTTPValidationError";
+export * from "./messageResponse";
 export * from "./user";
-export * from "./userResponse";
 export * from "./validationError";
 export * from "./validationErrorLocItem";

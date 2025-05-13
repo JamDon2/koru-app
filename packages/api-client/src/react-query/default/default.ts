@@ -20,7 +20,7 @@ import type {
   UseQueryResult,
 } from "@tanstack/react-query";
 
-import type { HTTPValidationError, User, UserResponse } from "../../model";
+import type { HTTPValidationError, MessageResponse, User } from "../../model";
 
 import { customInstance } from "../../lib/axiosInstance";
 import type { ErrorType } from "../../lib/axiosInstance";
@@ -33,7 +33,7 @@ type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
  * @summary Root
  */
 export const root = (signal?: AbortSignal) => {
-  return customInstance<unknown>({ url: `/`, method: "GET", signal });
+  return customInstance<MessageResponse>({ url: `/`, method: "GET", signal });
 };
 
 export const getRootQueryKey = () => {
@@ -154,7 +154,11 @@ export function useRoot<
  * @summary Hello World
  */
 export const helloWorld = (signal?: AbortSignal) => {
-  return customInstance<unknown>({ url: `/hello`, method: "GET", signal });
+  return customInstance<MessageResponse>({
+    url: `/hello`,
+    method: "GET",
+    signal,
+  });
 };
 
 export const getHelloWorldQueryKey = () => {
@@ -277,7 +281,7 @@ export function useHelloWorld<
  * @summary Create User
  */
 export const createUser = (user: User, signal?: AbortSignal) => {
-  return customInstance<UserResponse>({
+  return customInstance<MessageResponse>({
     url: `/users`,
     method: "POST",
     headers: { "Content-Type": "application/json" },

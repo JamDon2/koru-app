@@ -5,6 +5,6 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export interface UserResponse {
+export interface MessageResponse {
   message: string;
 }
