@@ -1,0 +1,45 @@
+{
+  "name": "api-client",
+  "private": true,
+  "scripts": {
+    "build": "pnpm codegen && tsc -p tsconfig.build.json",
+    "codegen": "pnpm clean && orval",
+    "clean": "node scripts/clean.js",
+    "generate": "pnpm build"
+  },
+  "exports": {
+    "./axios": {
+      "types": "./dist/axios/index.d.ts",
+      "require": "./dist/axios/index.js",
+      "import": "./dist/axios/index.js"
+    },
+    "./react-query": {
+      "types": "./dist/react-query/index.d.ts",
+      "require": "./dist/react-query/index.js",
+      "import": "./dist/react-query/index.js"
+    },
+    "./zod": {
+      "types": "./dist/zod/index.d.ts",
+      "require": "./dist/zod/index.js",
+      "import": "./dist/zod/index.js"
+    },
+    "./model": {
+      "types": "./dist/model/index.d.ts",
+      "require": "./dist/model/index.js",
+      "import": "./dist/model/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@tanstack/react-query": "^5.76.0",
+    "axios": "^1.9.0",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "orval": "^7.9.0",
+    "prettier": "^3.5.3"
+  },
+  "packageManager": "pnpm@10.10.0"
+}
