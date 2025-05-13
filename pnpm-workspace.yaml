@@ -2,3 +2,4 @@ packages:
   - apps/*
   - packages/*
 nodeLinker: hoisted
+injectWorkspacePackages: true
