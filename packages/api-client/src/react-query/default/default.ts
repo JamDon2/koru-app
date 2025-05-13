@@ -83,7 +83,7 @@ export function useRoot<
         "initialData"
       >;
   },
-  queryClient?: QueryClient,
+  queryClient?: QueryClient
 ): DefinedUseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
@@ -104,7 +104,7 @@ export function useRoot<
         "initialData"
       >;
   },
-  queryClient?: QueryClient,
+  queryClient?: QueryClient
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
@@ -117,7 +117,7 @@ export function useRoot<
       UseQueryOptions<Awaited<ReturnType<typeof root>>, TError, TData>
     >;
   },
-  queryClient?: QueryClient,
+  queryClient?: QueryClient
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
@@ -134,7 +134,7 @@ export function useRoot<
       UseQueryOptions<Awaited<ReturnType<typeof root>>, TError, TData>
     >;
   },
-  queryClient?: QueryClient,
+  queryClient?: QueryClient
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 } {
@@ -206,7 +206,7 @@ export function useHelloWorld<
         "initialData"
       >;
   },
-  queryClient?: QueryClient,
+  queryClient?: QueryClient
 ): DefinedUseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
@@ -227,7 +227,7 @@ export function useHelloWorld<
         "initialData"
       >;
   },
-  queryClient?: QueryClient,
+  queryClient?: QueryClient
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
@@ -240,7 +240,7 @@ export function useHelloWorld<
       UseQueryOptions<Awaited<ReturnType<typeof helloWorld>>, TError, TData>
     >;
   },
-  queryClient?: QueryClient,
+  queryClient?: QueryClient
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
@@ -257,7 +257,7 @@ export function useHelloWorld<
       UseQueryOptions<Awaited<ReturnType<typeof helloWorld>>, TError, TData>
     >;
   },
-  queryClient?: QueryClient,
+  queryClient?: QueryClient
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 } {
@@ -344,7 +344,7 @@ export const useCreateUser = <
       TContext
     >;
   },
-  queryClient?: QueryClient,
+  queryClient?: QueryClient
 ): UseMutationResult<
   Awaited<ReturnType<typeof createUser>>,
   TError,
