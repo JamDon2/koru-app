@@ -10,6 +10,7 @@ import {
   Wallet,
   TrendingUp,
 } from "lucide-react";
+import PrivateText from "@/components/ui/private-text";
 
 // We need to prevent static generation, since the API is not available at build time
 export const dynamic = "force-dynamic";
@@ -84,7 +85,7 @@ export default async function Dashboard() {
             </CardHeader>
             <CardContent className="px-4 md:px-6">
               <div className="text-2xl md:text-3xl font-bold text-white">
-                {formatCurrency(totalBalance, "EUR")}
+                <PrivateText>{formatCurrency(totalBalance, "EUR")}</PrivateText>
               </div>
               <p className="text-xs text-sky-300/80 mt-1">
                 Across {accounts?.length} accounts
@@ -101,7 +102,9 @@ export default async function Dashboard() {
             </CardHeader>
             <CardContent className="px-4 md:px-6">
               <div className="text-2xl md:text-3xl font-bold text-white">
-                {formatCurrency(statistics?.last_30d_income ?? 0, "EUR")}
+                <PrivateText>
+                  {formatCurrency(statistics?.last_30d_income ?? 0, "EUR")}
+                </PrivateText>
               </div>
               <p className="text-xs text-emerald-300/80 mt-1">Last 30 days</p>
             </CardContent>
@@ -116,7 +119,9 @@ export default async function Dashboard() {
             </CardHeader>
             <CardContent className="px-4 md:px-6">
               <div className="text-2xl md:text-3xl font-bold text-white">
-                {formatCurrency(statistics?.last_30d_expense ?? 0, "EUR")}
+                <PrivateText>
+                  {formatCurrency(statistics?.last_30d_expense ?? 0, "EUR")}
+                </PrivateText>
               </div>
               <p className="text-xs text-red-300/80 mt-1">Last 30 days</p>
             </CardContent>
@@ -166,17 +171,26 @@ export default async function Dashboard() {
                             : "text-red-400"
                         }`}
                       >
-                        {formatCurrency(account.balance, account.currency)}
+                        <PrivateText>
+                          {formatCurrency(account.balance, account.currency)}
+                        </PrivateText>
                       </p>
                     </div>
                   </div>
 
                   {/* IBAN - always at bottom */}
-                  <div className="xl:mt-2 min-w-0">
-                    <p className="text-xs text-muted-foreground/60 truncate">
-                      {account.iban}
-                    </p>
-                  </div>
+                  {account.iban && (
+                    <div className="xl:mt-2 min-w-0">
+                      <p className="text-xs text-muted-foreground/60 truncate">
+                        <PrivateText
+                          dots={15}
+                          prefix={account.iban?.slice(0, 2)}
+                        >
+                          {account.iban}
+                        </PrivateText>
+                      </p>
+                    </div>
+                  )}
                 </div>
               ))}
             </CardContent>
@@ -263,19 +277,23 @@ export default async function Dashboard() {
                                 : "text-red-400"
                             }`}
                           >
-                            {transaction.amount > 0 ? "+" : ""}
-                            {formatCurrency(
-                              transaction.native_amount,
-                              transaction.account.currency
-                            )}
+                            <PrivateText>
+                              {transaction.amount > 0 ? "+" : ""}
+                              {formatCurrency(
+                                transaction.native_amount,
+                                transaction.account.currency
+                              )}
+                            </PrivateText>
                           </p>
                           {transaction.currency !==
                             transaction.account.currency && (
                             <p className="text-xs text-muted-foreground/60 whitespace-nowrap">
-                              {formatCurrency(
-                                transaction.amount,
-                                transaction.currency
-                              )}
+                              <PrivateText>
+                                {formatCurrency(
+                                  transaction.amount,
+                                  transaction.currency
+                                )}
+                              </PrivateText>
                             </p>
                           )}
                         </div>

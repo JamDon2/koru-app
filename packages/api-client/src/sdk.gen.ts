@@ -35,6 +35,9 @@ import type {
   GetTransactionsData,
   GetTransactionsResponse,
   GetTransactionsError,
+  RunEnrichData,
+  RunEnrichResponse,
+  RunEnrichError,
   GetAccountsData,
   GetAccountsResponse,
   GetAccountsError,
@@ -237,6 +240,22 @@ export const getTransactions = <ThrowOnError extends boolean = false>(
     ThrowOnError
   >({
     url: "/transaction",
+    ...options,
+  });
+};
+
+/**
+ * Run Enrich
+ */
+export const runEnrich = <ThrowOnError extends boolean = false>(
+  options: Options<RunEnrichData, ThrowOnError>
+) => {
+  return (options.client ?? _heyApiClient).post<
+    RunEnrichResponse,
+    RunEnrichError,
+    ThrowOnError
+  >({
+    url: "/transaction/enrich/{account_id}",
     ...options,
   });
 };

@@ -205,6 +205,8 @@ export const zGetTaskStatusResponse = zTaskStatusResponse;
 
 export const zGetTransactionsResponse = z.array(zTransactionReadRelations);
 
+export const zRunEnrichResponse = z.object({});
+
 export const zGetAccountsResponse = z.array(zAccountReadWithBalance);
 
 export const zGetAccountStatisticsResponse = zAccountStatistics;

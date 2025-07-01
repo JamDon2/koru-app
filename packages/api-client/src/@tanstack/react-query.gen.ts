@@ -12,6 +12,7 @@ import {
   importGocardless,
   getTaskStatus,
   getTransactions,
+  runEnrich,
   getAccounts,
   getAccountStatistics,
   getConnections,
@@ -50,6 +51,9 @@ import type {
   GetTransactionsData,
   GetTransactionsError,
   GetTransactionsResponse,
+  RunEnrichData,
+  RunEnrichError,
+  RunEnrichResponse,
   GetAccountsData,
   GetAccountStatisticsData,
   GetConnectionsData,
@@ -555,6 +559,54 @@ export const getTransactionsInfiniteOptions = (
       queryKey: getTransactionsInfiniteQueryKey(options),
     }
   );
+};
+
+export const runEnrichQueryKey = (options: Options<RunEnrichData>) =>
+  createQueryKey("runEnrich", options);
+
+/**
+ * Run Enrich
+ */
+export const runEnrichOptions = (options: Options<RunEnrichData>) => {
+  return queryOptions({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await runEnrich({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      });
+      return data;
+    },
+    queryKey: runEnrichQueryKey(options),
+  });
+};
+
+/**
+ * Run Enrich
+ */
+export const runEnrichMutation = (
+  options?: Partial<Options<RunEnrichData>>
+): UseMutationOptions<
+  RunEnrichResponse,
+  RunEnrichError,
+  Options<RunEnrichData>
+> => {
+  const mutationOptions: UseMutationOptions<
+    RunEnrichResponse,
+    RunEnrichError,
+    Options<RunEnrichData>
+  > = {
+    mutationFn: async (localOptions) => {
+      const { data } = await runEnrich({
+        ...options,
+        ...localOptions,
+        throwOnError: true,
+      });
+      return data;
+    },
+  };
+  return mutationOptions;
 };
 
 export const getAccountsQueryKey = (options: Options<GetAccountsData>) =>

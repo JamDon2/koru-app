@@ -142,6 +142,6 @@ def _bulk_link_merchants(session: Session, account_id: str) -> int:
         )
 
     if transaction_updates:
-        session.bulk_update_mappings(Transaction, transaction_updates)  # type: ignore[arg-type]d
+        session.bulk_update_mappings(Transaction, transaction_updates)  # type: ignore[arg-type]
 
     return len(transaction_updates)

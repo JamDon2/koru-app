@@ -620,6 +620,51 @@ export type GetTransactionsResponses = {
 export type GetTransactionsResponse =
   GetTransactionsResponses[keyof GetTransactionsResponses];
 
+export type RunEnrichData = {
+  body?: never;
+  path: {
+    account_id: string;
+  };
+  query?: never;
+  url: "/transaction/enrich/{account_id}";
+};
+
+export type RunEnrichErrors = {
+  /**
+   * Bad Request
+   */
+  400: ErrorResponse;
+  /**
+   * Unauthorized
+   */
+  401: ErrorResponse;
+  /**
+   * Forbidden
+   */
+  403: ErrorResponse;
+  /**
+   * Not Found
+   */
+  404: ErrorResponse;
+  /**
+   * Validation Error
+   */
+  422: HttpValidationError;
+};
+
+export type RunEnrichError = RunEnrichErrors[keyof RunEnrichErrors];
+
+export type RunEnrichResponses = {
+  /**
+   * Successful Response
+   */
+  200: {
+    [key: string]: string;
+  };
+};
+
+export type RunEnrichResponse = RunEnrichResponses[keyof RunEnrichResponses];
+
 export type GetAccountsData = {
   body?: never;
   path?: never;
