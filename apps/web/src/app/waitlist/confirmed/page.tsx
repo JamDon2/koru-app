@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function WaitlistConfirmedPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex flex-col items-center justify-center p-4 text-center">
-      <main className="flex flex-col items-center justify-center max-w-2xl w-full">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-gray-900 to-black p-4 text-center text-white">
+      <main className="flex w-full max-w-2xl flex-col items-center justify-center">
         <Image
           src="/logos/dark_flat.png" // Assuming the same logo is appropriate here
           alt="Koru Logo"
@@ -16,11 +16,11 @@ export default function WaitlistConfirmedPage() {
           className="mb-8"
         />
 
-        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-green-400">
+        <h1 className="mb-6 text-4xl font-bold text-green-400 md:text-5xl">
           You&apos;re In!
         </h1>
 
-        <p className="text-lg md:text-xl text-gray-300 mb-8">
+        <p className="mb-8 text-lg text-gray-300 md:text-xl">
           Your email has been confirmed, and you&apos;re officially on the Koru
           waitlist. We&apos;re excited to have you and will keep you updated on
           our launch!
@@ -28,7 +28,7 @@ export default function WaitlistConfirmedPage() {
 
         <Link
           href="/"
-          className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-md transition-all duration-300"
+          className="rounded-md bg-indigo-600 px-6 py-3 font-semibold text-white transition-all duration-300 hover:bg-indigo-700"
         >
           Back to Homepage
         </Link>

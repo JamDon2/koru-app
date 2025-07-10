@@ -107,23 +107,23 @@ export default function GlowBackground() {
   if (dimensions.width === 0) return null;
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       <motion.div
-        className="absolute blur-[100px] opacity-70 rounded-full bg-gradient-to-r from-violet-600 to-indigo-600 w-[500px] h-[500px] -translate-1/2"
+        className="-translate-1/2 absolute h-[500px] w-[500px] rounded-full bg-gradient-to-r from-violet-600 to-indigo-600 opacity-70 blur-[100px]"
         style={{
           x: blob1X.current,
           y: blob1Y.current,
         }}
       />
       <motion.div
-        className="absolute blur-[120px] opacity-50 rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-500 w-[600px] h-[600px] -translate-1/2"
+        className="-translate-1/2 absolute h-[600px] w-[600px] rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-500 opacity-50 blur-[120px]"
         style={{
           x: blob2X.current,
           y: blob2Y.current,
         }}
       />
       <motion.div
-        className="absolute blur-[150px] opacity-40 rounded-full bg-gradient-to-r from-blue-500 to-emerald-500 w-[400px] h-[400px] -translate-1/2"
+        className="-translate-1/2 absolute h-[400px] w-[400px] rounded-full bg-gradient-to-r from-blue-500 to-emerald-500 opacity-40 blur-[150px]"
         style={{
           x: blob3X.current,
           y: blob3Y.current,

@@ -101,7 +101,7 @@ export default function RegisterForm({ onSuccess }: RegisterFormProps) {
                 <FormControl>
                   <Input
                     placeholder="John"
-                    className="bg-neutral-900/50 border-neutral-800 focus-visible:ring-violet-500"
+                    className="border-neutral-800 bg-neutral-900/50 focus-visible:ring-violet-500"
                     {...field}
                   />
                 </FormControl>
@@ -118,7 +118,7 @@ export default function RegisterForm({ onSuccess }: RegisterFormProps) {
                 <FormControl>
                   <Input
                     placeholder="Doe"
-                    className="bg-neutral-900/50 border-neutral-800 focus-visible:ring-violet-500"
+                    className="border-neutral-800 bg-neutral-900/50 focus-visible:ring-violet-500"
                     {...field}
                   />
                 </FormControl>
@@ -137,7 +137,7 @@ export default function RegisterForm({ onSuccess }: RegisterFormProps) {
                 <Input
                   type="email"
                   placeholder="example@example.com"
-                  className="bg-neutral-900/50 border-neutral-800 focus-visible:ring-violet-500"
+                  className="border-neutral-800 bg-neutral-900/50 focus-visible:ring-violet-500"
                   {...field}
                 />
               </FormControl>
@@ -155,7 +155,7 @@ export default function RegisterForm({ onSuccess }: RegisterFormProps) {
                 <Input
                   type="password"
                   placeholder="Create a password"
-                  className="bg-neutral-900/50 border-neutral-800 focus-visible:ring-violet-500"
+                  className="border-neutral-800 bg-neutral-900/50 focus-visible:ring-violet-500"
                   {...field}
                 />
               </FormControl>
@@ -168,7 +168,7 @@ export default function RegisterForm({ onSuccess }: RegisterFormProps) {
             Registration failed. This email may already be in use.
           </div>
         )}
-        <div className="flex justify-center h-[78px]">
+        <div className="flex h-[78px] justify-center">
           {hcaptchaSitekey.isLoading ? (
             <Skeleton className="h-[78px] w-[300px] bg-neutral-800/50" />
           ) : (

@@ -29,7 +29,7 @@ export function MerchantLogo({
   return (
     <div
       className={cn(
-        "flex h-10 w-10 items-center justify-center rounded-full bg-muted/20 text-muted-foreground border border-border/50 text-sm font-medium",
+        "bg-muted/20 text-muted-foreground border-border/50 flex h-10 w-10 items-center justify-center rounded-full border text-sm font-medium",
         className
       )}
     >

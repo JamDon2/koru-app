@@ -210,16 +210,16 @@ export default function TransactionsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-full bg-gradient-to-br from-background via-background to-background/95 p-6">
+      <div className="from-background via-background to-background/95 min-h-full bg-gradient-to-br p-6">
         <div className="mx-auto max-w-7xl">
           <div className="animate-pulse space-y-8">
-            <div className="h-8 bg-muted/20 rounded w-1/4"></div>
+            <div className="bg-muted/20 h-8 w-1/4 rounded"></div>
             <div className="grid gap-4 md:grid-cols-4">
               {[...Array(4)].map((_, i) => (
-                <div key={i} className="h-32 bg-muted/20 rounded-lg"></div>
+                <div key={i} className="bg-muted/20 h-32 rounded-lg"></div>
               ))}
             </div>
-            <div className="h-96 bg-muted/20 rounded-lg"></div>
+            <div className="bg-muted/20 h-96 rounded-lg"></div>
           </div>
         </div>
       </div>
@@ -227,10 +227,10 @@ export default function TransactionsPage() {
   }
 
   return (
-    <div className="min-h-full bg-gradient-to-br from-background via-background to-background/95 p-6">
+    <div className="from-background via-background to-background/95 min-h-full bg-gradient-to-br p-6">
       <div className="mx-auto max-w-7xl space-y-8">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+        <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
           <div>
             <h1 className="text-3xl font-bold text-white">Transactions</h1>
             <p className="text-muted-foreground mt-1">
@@ -247,7 +247,7 @@ export default function TransactionsPage() {
               onClick={() => setShowFilters(!showFilters)}
               className="bg-card/50 border-border/50 hover:bg-card/80"
             >
-              <SlidersHorizontal className="h-4 w-4 mr-2" />
+              <SlidersHorizontal className="mr-2 h-4 w-4" />
               Filters
             </Button>
             <Button
@@ -256,15 +256,15 @@ export default function TransactionsPage() {
               onClick={handleExport}
               className="bg-card/50 border-border/50 hover:bg-card/80"
             >
-              <Download className="h-4 w-4 mr-2" />
+              <Download className="mr-2 h-4 w-4" />
               Export
             </Button>
           </div>
         </div>
 
         {/* Analytics Cards */}
-        <div className="grid gap-4 md:gap-6 md:grid-cols-4">
-          <Card className="bg-gradient-to-br from-emerald-500/10 to-green-600/10 border-emerald-500/40">
+        <div className="grid gap-4 md:grid-cols-4 md:gap-6">
+          <Card className="border-emerald-500/40 bg-gradient-to-br from-emerald-500/10 to-green-600/10">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-emerald-300">
                 Total Income
@@ -280,7 +280,7 @@ export default function TransactionsPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-red-500/10 to-rose-600/10 border-red-500/40">
+          <Card className="border-red-500/40 bg-gradient-to-br from-red-500/10 to-rose-600/10">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-red-300">
                 Total Expenses
@@ -296,7 +296,7 @@ export default function TransactionsPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-blue-500/10 to-cyan-600/10 border-blue-500/40">
+          <Card className="border-blue-500/40 bg-gradient-to-br from-blue-500/10 to-cyan-600/10">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-blue-300">
                 Net Flow
@@ -320,7 +320,7 @@ export default function TransactionsPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-purple-500/10 to-violet-600/10 border-purple-500/40">
+          <Card className="border-purple-500/40 bg-gradient-to-br from-purple-500/10 to-violet-600/10">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-purple-300">
                 Average Transaction
@@ -341,32 +341,32 @@ export default function TransactionsPage() {
         {showFilters && (
           <Card className="border-border/50 bg-card/30">
             <CardHeader>
-              <CardTitle className="text-white flex items-center">
-                <Filter className="h-5 w-5 mr-2" />
+              <CardTitle className="flex items-center text-white">
+                <Filter className="mr-2 h-5 w-5" />
                 Filters
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">
+                  <label className="text-muted-foreground text-sm font-medium">
                     Search
                   </label>
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Search className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform" />
                     <Input
                       placeholder="Search transactions..."
                       value={filters.search}
                       onChange={(e) =>
                         setFilters({ ...filters, search: e.target.value })
                       }
-                      className="pl-10 bg-background/50 border-border/50"
+                      className="bg-background/50 border-border/50 pl-10"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">
+                  <label className="text-muted-foreground text-sm font-medium">
                     Account
                   </label>
                   <select
@@ -374,7 +374,7 @@ export default function TransactionsPage() {
                     onChange={(e) =>
                       setFilters({ ...filters, accountId: e.target.value })
                     }
-                    className="w-full p-2 rounded-md border border-border/50 bg-background/50 text-white"
+                    className="border-border/50 bg-background/50 w-full rounded-md border p-2 text-white"
                   >
                     <option value="">All Accounts</option>
                     {accounts.map((account) => (
@@ -386,7 +386,7 @@ export default function TransactionsPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">
+                  <label className="text-muted-foreground text-sm font-medium">
                     Date Range
                   </label>
                   <select
@@ -397,7 +397,7 @@ export default function TransactionsPage() {
                         dateRange: e.target.value as FilterState["dateRange"],
                       })
                     }
-                    className="w-full p-2 rounded-md border border-border/50 bg-background/50 text-white"
+                    className="border-border/50 bg-background/50 w-full rounded-md border p-2 text-white"
                   >
                     <option value="7d">Last 7 days</option>
                     <option value="30d">Last 30 days</option>
@@ -408,7 +408,7 @@ export default function TransactionsPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">
+                  <label className="text-muted-foreground text-sm font-medium">
                     Type
                   </label>
                   <select
@@ -420,7 +420,7 @@ export default function TransactionsPage() {
                           .value as FilterState["transactionType"],
                       })
                     }
-                    className="w-full p-2 rounded-md border border-border/50 bg-background/50 text-white"
+                    className="border-border/50 bg-background/50 w-full rounded-md border p-2 text-white"
                   >
                     <option value="all">All Transactions</option>
                     <option value="income">Income Only</option>
@@ -431,7 +431,7 @@ export default function TransactionsPage() {
 
               <div className="flex gap-4">
                 <div className="flex-1 space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">
+                  <label className="text-muted-foreground text-sm font-medium">
                     Min Amount
                   </label>
                   <Input
@@ -445,7 +445,7 @@ export default function TransactionsPage() {
                   />
                 </div>
                 <div className="flex-1 space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">
+                  <label className="text-muted-foreground text-sm font-medium">
                     Max Amount
                   </label>
                   <Input
@@ -479,14 +479,14 @@ export default function TransactionsPage() {
         <Card className="border-border/50 bg-card/30">
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="text-white">Transactions</CardTitle>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-muted-foreground text-sm">
               Showing {filteredTransactions.length} of {transactions.length}
             </div>
           </CardHeader>
           <CardContent className="p-0">
             {filteredTransactions.length === 0 ? (
-              <div className="text-center py-12 text-muted-foreground">
-                <Receipt className="h-12 w-12 mx-auto mb-4 opacity-50" />
+              <div className="text-muted-foreground py-12 text-center">
+                <Receipt className="mx-auto mb-4 h-12 w-12 opacity-50" />
                 <p className="text-lg font-medium">No transactions found</p>
                 <p className="text-sm">
                   Try adjusting your filters or date range
@@ -497,13 +497,13 @@ export default function TransactionsPage() {
                 {filteredTransactions.map((transaction, index) => (
                   <div
                     key={transaction.id}
-                    className={`p-4 border-b border-border/30 hover:bg-card/60 transition-colors last:border-b-0 ${
+                    className={`border-border/30 hover:bg-card/60 border-b p-4 transition-colors last:border-b-0 ${
                       index % 2 === 0 ? "bg-card/20" : "bg-transparent"
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       {/* Left side: Logo and details */}
-                      <div className="flex items-center space-x-4 min-w-0 flex-1">
+                      <div className="flex min-w-0 flex-1 items-center space-x-4">
                         <div className="relative flex-shrink-0">
                           <MerchantLogo
                             merchantName={
@@ -518,7 +518,7 @@ export default function TransactionsPage() {
                             }
                           />
                           <div
-                            className={`absolute -bottom-1 -right-1 h-5 w-5 rounded-full border-2 border-card flex items-center justify-center ${
+                            className={`border-card absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full border-2 ${
                               transaction.amount > 0
                                 ? "bg-emerald-500"
                                 : "bg-red-500"
@@ -532,21 +532,21 @@ export default function TransactionsPage() {
                           </div>
                         </div>
 
-                        <div className="flex-1 min-w-0">
+                        <div className="min-w-0 flex-1">
                           <div className="flex items-center space-x-2">
-                            <p className="font-medium text-white truncate">
+                            <p className="truncate font-medium text-white">
                               {transaction.opposing_account?.name ||
                                 transaction.opposing_merchant?.name ||
                                 transaction.opposing_counterparty?.name ||
                                 transaction.opposing_name}
                             </p>
                             {transaction.opposing_merchant?.category && (
-                              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                              <span className="inline-flex items-center rounded-full border border-blue-500/30 bg-blue-500/20 px-2 py-1 text-xs font-medium text-blue-400">
                                 {transaction.opposing_merchant.category}
                               </span>
                             )}
                           </div>
-                          <div className="flex items-center space-x-2 text-xs text-muted-foreground/60 mt-1">
+                          <div className="text-muted-foreground/60 mt-1 flex items-center space-x-2 text-xs">
                             <span>{transaction.account.name}</span>
                             <span>•</span>
                             <span>{formatDate(transaction.booking_time)}</span>
@@ -564,7 +564,7 @@ export default function TransactionsPage() {
                       <div className="flex items-center space-x-4">
                         <div className="text-right">
                           <p
-                            className={`font-semibold text-lg whitespace-nowrap ${
+                            className={`whitespace-nowrap text-lg font-semibold ${
                               transaction.amount > 0
                                 ? "text-emerald-400"
                                 : "text-red-400"
@@ -580,7 +580,7 @@ export default function TransactionsPage() {
                           </p>
                           {transaction.currency !==
                             transaction.account.currency && (
-                            <p className="text-xs text-muted-foreground/60 whitespace-nowrap">
+                            <p className="text-muted-foreground/60 whitespace-nowrap text-xs">
                               <PrivateText>
                                 {formatCurrency(
                                   transaction.amount,

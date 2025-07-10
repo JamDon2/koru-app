@@ -26,7 +26,7 @@ export default function AuthCheck({
 
   if (!_hasHydrated) {
     return (
-      <div className="flex h-screen w-full items-center justify-center flex-col">
+      <div className="flex h-screen w-full flex-col items-center justify-center">
         <Loader />
       </div>
     );

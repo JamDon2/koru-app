@@ -33,9 +33,9 @@ export default function AuthForm() {
 
   if (registrationComplete) {
     return (
-      <div className="flex items-center justify-center min-h-screen p-4">
-        <div className="w-full max-w-md z-10">
-          <Card className="backdrop-blur-md bg-black/30 border-neutral-800 shadow-xl">
+      <div className="flex min-h-screen items-center justify-center p-4">
+        <div className="z-10 w-full max-w-md">
+          <Card className="border-neutral-800 bg-black/30 shadow-xl backdrop-blur-md">
             <CardContent className="flex flex-col items-center justify-center space-y-6 py-10 text-center">
               <div className="rounded-full bg-green-500/20 p-3">
                 <CheckCircle className="h-10 w-10 text-green-500" />
@@ -59,11 +59,11 @@ export default function AuthForm() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="w-full max-w-md z-10">
-        <Card className="backdrop-blur-md bg-black/30 border-neutral-800 shadow-xl">
+    <div className="flex min-h-screen items-center justify-center p-4">
+      <div className="z-10 w-full max-w-md">
+        <Card className="border-neutral-800 bg-black/30 shadow-xl backdrop-blur-md">
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl font-bold text-center">
+            <CardTitle className="text-center text-2xl font-bold">
               {isLogin ? "Sign In" : "Register"}
             </CardTitle>
             <CardDescription className="text-center text-neutral-300">
@@ -83,7 +83,7 @@ export default function AuthForm() {
             <Button
               variant="ghost"
               onClick={() => setIsLogin(!isLogin)}
-              className="text-sm text-neutral-300 hover:text-white hover:bg-neutral-800"
+              className="text-sm text-neutral-300 hover:bg-neutral-800 hover:text-white"
             >
               {isLogin
                 ? "Don't have an account? Register"

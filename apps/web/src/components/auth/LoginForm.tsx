@@ -89,7 +89,7 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
                 <Input
                   type="email"
                   placeholder="Enter your email"
-                  className="bg-neutral-900/50 border-neutral-800 focus-visible:ring-violet-500"
+                  className="border-neutral-800 bg-neutral-900/50 focus-visible:ring-violet-500"
                   {...field}
                 />
               </FormControl>
@@ -107,7 +107,7 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
                 <Input
                   type="password"
                   placeholder="Enter your password"
-                  className="bg-neutral-900/50 border-neutral-800 focus-visible:ring-violet-500"
+                  className="border-neutral-800 bg-neutral-900/50 focus-visible:ring-violet-500"
                   {...field}
                 />
               </FormControl>
@@ -120,7 +120,7 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
             Invalid credentials. Please try again.
           </div>
         )}
-        <div className="flex justify-center h-[78px]">
+        <div className="flex h-[78px] justify-center">
           {hcaptchaSitekey.isLoading ? (
             <Skeleton className="h-[78px] w-[300px] bg-neutral-800/50" />
           ) : (

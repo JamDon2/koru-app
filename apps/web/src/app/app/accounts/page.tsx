@@ -235,16 +235,16 @@ export default function AccountsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-full bg-gradient-to-br from-background via-background to-background/95 p-6">
+      <div className="from-background via-background to-background/95 min-h-full bg-gradient-to-br p-6">
         <div className="mx-auto max-w-7xl">
           <div className="animate-pulse space-y-8">
-            <div className="h-8 bg-muted/20 rounded w-1/4"></div>
+            <div className="bg-muted/20 h-8 w-1/4 rounded"></div>
             <div className="grid gap-4 md:grid-cols-4">
               {[...Array(4)].map((_, i) => (
-                <div key={i} className="h-32 bg-muted/20 rounded-lg"></div>
+                <div key={i} className="bg-muted/20 h-32 rounded-lg"></div>
               ))}
             </div>
-            <div className="h-96 bg-muted/20 rounded-lg"></div>
+            <div className="bg-muted/20 h-96 rounded-lg"></div>
           </div>
         </div>
       </div>
@@ -252,10 +252,10 @@ export default function AccountsPage() {
   }
 
   return (
-    <div className="min-h-full bg-gradient-to-br from-background via-background to-background/95 p-6">
+    <div className="from-background via-background to-background/95 min-h-full bg-gradient-to-br p-6">
       <div className="mx-auto max-w-7xl space-y-8">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+        <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
           <div>
             <h1 className="text-3xl font-bold text-white">Accounts</h1>
             <p className="text-muted-foreground mt-1">
@@ -270,7 +270,7 @@ export default function AccountsPage() {
               onClick={() => setShowFilters(!showFilters)}
               className="bg-card/50 border-border/50 hover:bg-card/80"
             >
-              <Filter className="h-4 w-4 mr-2" />
+              <Filter className="mr-2 h-4 w-4" />
               Filters
             </Button>
             <Button
@@ -279,15 +279,15 @@ export default function AccountsPage() {
               onClick={() => refetchAccounts()}
               className="bg-card/50 border-border/50 hover:bg-card/80"
             >
-              <RefreshCw className="h-4 w-4 mr-2" />
+              <RefreshCw className="mr-2 h-4 w-4" />
               Refresh
             </Button>
           </div>
         </div>
 
         {/* Summary Cards */}
-        <div className="grid gap-4 md:gap-6 md:grid-cols-4">
-          <Card className="bg-gradient-to-br from-blue-500/10 to-sky-600/10 border-blue-500/40">
+        <div className="grid gap-4 md:grid-cols-4 md:gap-6">
+          <Card className="border-blue-500/40 bg-gradient-to-br from-blue-500/10 to-sky-600/10">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-blue-300">
                 Total Balance
@@ -303,13 +303,13 @@ export default function AccountsPage() {
                   )}
                 </PrivateText>
               </div>
-              <p className="text-xs text-blue-300/80 mt-1">
+              <p className="mt-1 text-xs text-blue-300/80">
                 Across all accounts
               </p>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-emerald-500/10 to-green-600/10 border-emerald-500/40">
+          <Card className="border-emerald-500/40 bg-gradient-to-br from-emerald-500/10 to-green-600/10">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-emerald-300">
                 Active Accounts
@@ -320,13 +320,13 @@ export default function AccountsPage() {
               <div className="text-2xl font-bold text-white">
                 {accountSummary.positiveAccounts}
               </div>
-              <p className="text-xs text-emerald-300/80 mt-1">
+              <p className="mt-1 text-xs text-emerald-300/80">
                 With positive balance
               </p>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-red-500/10 to-rose-600/10 border-red-500/40">
+          <Card className="border-red-500/40 bg-gradient-to-br from-red-500/10 to-rose-600/10">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-red-300">
                 Overdrawn
@@ -337,13 +337,13 @@ export default function AccountsPage() {
               <div className="text-2xl font-bold text-white">
                 {accountSummary.negativeAccounts}
               </div>
-              <p className="text-xs text-red-300/80 mt-1">
+              <p className="mt-1 text-xs text-red-300/80">
                 Accounts with negative balance
               </p>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-purple-500/10 to-violet-600/10 border-purple-500/40">
+          <Card className="border-purple-500/40 bg-gradient-to-br from-purple-500/10 to-violet-600/10">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-purple-300">
                 Account Types
@@ -354,7 +354,7 @@ export default function AccountsPage() {
               <div className="text-2xl font-bold text-white">
                 {accountSummary.accountTypes.length}
               </div>
-              <p className="text-xs text-purple-300/80 mt-1">
+              <p className="mt-1 text-xs text-purple-300/80">
                 Different account types
               </p>
             </CardContent>
@@ -365,32 +365,32 @@ export default function AccountsPage() {
         {showFilters && (
           <Card className="border-border/50 bg-card/30">
             <CardHeader>
-              <CardTitle className="text-white flex items-center">
-                <Filter className="h-5 w-5 mr-2" />
+              <CardTitle className="flex items-center text-white">
+                <Filter className="mr-2 h-5 w-5" />
                 Filters & Sorting
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">
+                  <label className="text-muted-foreground text-sm font-medium">
                     Search
                   </label>
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Search className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform" />
                     <Input
                       placeholder="Search accounts..."
                       value={filters.search}
                       onChange={(e) =>
                         setFilters({ ...filters, search: e.target.value })
                       }
-                      className="pl-10 bg-background/50 border-border/50"
+                      className="bg-background/50 border-border/50 pl-10"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">
+                  <label className="text-muted-foreground text-sm font-medium">
                     Account Type
                   </label>
                   <select
@@ -398,7 +398,7 @@ export default function AccountsPage() {
                     onChange={(e) =>
                       setFilters({ ...filters, accountType: e.target.value })
                     }
-                    className="w-full p-2 rounded-md border border-border/50 bg-background/50 text-white"
+                    className="border-border/50 bg-background/50 w-full rounded-md border p-2 text-white"
                   >
                     <option value="">All Types</option>
                     <option value="CACC">Checking</option>
@@ -408,7 +408,7 @@ export default function AccountsPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">
+                  <label className="text-muted-foreground text-sm font-medium">
                     Currency
                   </label>
                   <select
@@ -416,7 +416,7 @@ export default function AccountsPage() {
                     onChange={(e) =>
                       setFilters({ ...filters, currency: e.target.value })
                     }
-                    className="w-full p-2 rounded-md border border-border/50 bg-background/50 text-white"
+                    className="border-border/50 bg-background/50 w-full rounded-md border p-2 text-white"
                   >
                     <option value="">All Currencies</option>
                     {accountSummary.currencies.map((currency) => (
@@ -428,7 +428,7 @@ export default function AccountsPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">
+                  <label className="text-muted-foreground text-sm font-medium">
                     Sort By
                   </label>
                   <select
@@ -439,7 +439,7 @@ export default function AccountsPage() {
                         sortBy: e.target.value as FilterState["sortBy"],
                       })
                     }
-                    className="w-full p-2 rounded-md border border-border/50 bg-background/50 text-white"
+                    className="border-border/50 bg-background/50 w-full rounded-md border p-2 text-white"
                   >
                     <option value="balance">Balance</option>
                     <option value="name">Name</option>
@@ -448,7 +448,7 @@ export default function AccountsPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">
+                  <label className="text-muted-foreground text-sm font-medium">
                     Order
                   </label>
                   <select
@@ -459,7 +459,7 @@ export default function AccountsPage() {
                         sortOrder: e.target.value as FilterState["sortOrder"],
                       })
                     }
-                    className="w-full p-2 rounded-md border border-border/50 bg-background/50 text-white"
+                    className="border-border/50 bg-background/50 w-full rounded-md border p-2 text-white"
                   >
                     <option value="desc">High to Low</option>
                     <option value="asc">Low to High</option>
@@ -467,10 +467,10 @@ export default function AccountsPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">
+                  <label className="text-muted-foreground text-sm font-medium">
                     Options
                   </label>
-                  <label className="flex items-center space-x-2 cursor-pointer">
+                  <label className="flex cursor-pointer items-center space-x-2">
                     <input
                       type="checkbox"
                       checked={filters.showZeroBalance}
@@ -480,9 +480,9 @@ export default function AccountsPage() {
                           showZeroBalance: e.target.checked,
                         })
                       }
-                      className="rounded border-border/50 bg-background/50"
+                      className="border-border/50 bg-background/50 rounded"
                     />
-                    <span className="text-sm text-muted-foreground">
+                    <span className="text-muted-foreground text-sm">
                       Show zero balances
                     </span>
                   </label>
@@ -508,7 +508,7 @@ export default function AccountsPage() {
           {filteredAccounts.map((account) => (
             <Card
               key={account.id}
-              className={`bg-gradient-to-br ${getAccountTypeColor(account.iso_account_type)} transition-all duration-200 hover:shadow-lg cursor-pointer ${
+              className={`bg-gradient-to-br ${getAccountTypeColor(account.iso_account_type)} cursor-pointer transition-all duration-200 hover:shadow-lg ${
                 selectedAccount === account.id ? "ring-2 ring-blue-500/50" : ""
               }`}
               onClick={() =>
@@ -520,14 +520,14 @@ export default function AccountsPage() {
               <CardHeader className="pb-4">
                 <div className="flex items-start justify-between">
                   <div className="flex items-center space-x-3">
-                    <div className="p-2 rounded-full bg-background/20">
+                    <div className="bg-background/20 rounded-full p-2">
                       {getAccountIcon(account.iso_account_type)}
                     </div>
                     <div>
-                      <CardTitle className="text-white text-lg">
+                      <CardTitle className="text-lg text-white">
                         {account.name}
                       </CardTitle>
-                      <p className="text-sm text-muted-foreground/60 mt-1">
+                      <p className="text-muted-foreground/60 mt-1 text-sm">
                         {getAccountTypeName(account.iso_account_type)} •{" "}
                         {account.currency}
                       </p>
@@ -541,7 +541,7 @@ export default function AccountsPage() {
                         e.stopPropagation();
                         toggleBalanceVisibility(account.id);
                       }}
-                      className="h-8 w-8 p-0 hover:bg-background/20"
+                      className="hover:bg-background/20 h-8 w-8 p-0"
                     >
                       {hiddenBalances.has(account.id) ? (
                         <EyeOff className="h-4 w-4" />
@@ -568,12 +568,12 @@ export default function AccountsPage() {
                 </div>
 
                 {/* Account Details */}
-                <div className="space-y-2 pt-2 border-t border-white/10">
+                <div className="space-y-2 border-t border-white/10 pt-2">
                   {account.iban && (
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-muted-foreground/60">IBAN:</span>
                       <div className="flex items-center space-x-2">
-                        <code className="bg-background/20 px-2 py-1 rounded text-xs">
+                        <code className="bg-background/20 rounded px-2 py-1 text-xs">
                           <PrivateText dots={15}>{account.iban}</PrivateText>
                         </code>
                         <Button
@@ -583,7 +583,7 @@ export default function AccountsPage() {
                             e.stopPropagation();
                             copyToClipboard(account.iban!);
                           }}
-                          className="h-6 w-6 p-0 hover:bg-background/20"
+                          className="hover:bg-background/20 h-6 w-6 p-0"
                         >
                           <Copy className="h-3 w-3" />
                         </Button>
@@ -594,7 +594,7 @@ export default function AccountsPage() {
                   {account.owner_name && (
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-muted-foreground/60">Owner:</span>
-                      <span className="text-white text-right">
+                      <span className="text-right text-white">
                         {account.owner_name}
                       </span>
                     </div>
@@ -603,7 +603,7 @@ export default function AccountsPage() {
                   {account.bic && (
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-muted-foreground/60">BIC:</span>
-                      <code className="bg-background/20 px-2 py-1 rounded text-xs">
+                      <code className="bg-background/20 rounded px-2 py-1 text-xs">
                         {account.bic}
                       </code>
                     </div>
@@ -613,17 +613,17 @@ export default function AccountsPage() {
                 {/* Recent Transactions (when selected) */}
                 {selectedAccount === account.id &&
                   accountTransactions.length > 0 && (
-                    <div className="pt-4 border-t border-white/10">
-                      <h4 className="text-sm font-medium text-white mb-3">
+                    <div className="border-t border-white/10 pt-4">
+                      <h4 className="mb-3 text-sm font-medium text-white">
                         Recent Activity
                       </h4>
                       <div className="space-y-2">
                         {accountTransactions.map((transaction) => (
                           <div
                             key={transaction.id}
-                            className="flex items-center justify-between p-2 rounded bg-background/10"
+                            className="bg-background/10 flex items-center justify-between rounded p-2"
                           >
-                            <div className="flex items-center space-x-2 min-w-0 flex-1">
+                            <div className="flex min-w-0 flex-1 items-center space-x-2">
                               <div className="relative flex-shrink-0">
                                 <MerchantLogo
                                   merchantName={
@@ -640,12 +640,12 @@ export default function AccountsPage() {
                                 />
                               </div>
                               <div className="min-w-0 flex-1">
-                                <p className="text-xs text-white truncate">
+                                <p className="truncate text-xs text-white">
                                   {transaction.opposing_merchant?.name ||
                                     transaction.opposing_counterparty?.name ||
                                     transaction.opposing_name}
                                 </p>
-                                <p className="text-xs text-muted-foreground/60">
+                                <p className="text-muted-foreground/60 text-xs">
                                   {formatDate(transaction.booking_time)}
                                 </p>
                               </div>
@@ -680,12 +680,12 @@ export default function AccountsPage() {
         {/* Empty State */}
         {filteredAccounts.length === 0 && (
           <Card className="border-border/50 bg-card/30">
-            <CardContent className="text-center py-12">
-              <Wallet className="h-12 w-12 mx-auto mb-4 opacity-50 text-muted-foreground" />
+            <CardContent className="py-12 text-center">
+              <Wallet className="text-muted-foreground mx-auto mb-4 h-12 w-12 opacity-50" />
               <p className="text-lg font-medium text-white">
                 No accounts found
               </p>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Try adjusting your filters or connect a new bank account
               </p>
             </CardContent>

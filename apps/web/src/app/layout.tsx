@@ -30,7 +30,7 @@ export default function RootLayout({
         lang="en"
         className={`${rubik.variable} ${geistMono.variable} dark`}
       >
-        <body className="antialiased dark bg-black text-white min-h-screen">
+        <body className="dark min-h-screen bg-black text-white antialiased">
           {children}
         </body>
       </html>

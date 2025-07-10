@@ -28,8 +28,8 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="bg-black/80 backdrop-blur-lg border-b border-neutral-800 sticky top-0 z-50">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <header className="sticky top-0 z-50 border-b border-neutral-800 bg-black/80 backdrop-blur-lg">
+      <div className="mx-auto px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             {/* Logo */}
@@ -43,7 +43,7 @@ export default function Header() {
             </Link>
 
             {/* Navigation */}
-            <nav className="hidden md:flex items-center space-x-1">
+            <nav className="hidden items-center space-x-1 md:flex">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = pathname === item.href;
@@ -52,10 +52,10 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                    className={`flex items-center space-x-2 rounded-lg px-4 py-2 font-medium transition-all duration-200 ${
                       isActive
-                        ? "bg-gradient-to-r from-blue-600/20 to-purple-600/20 text-white border border-blue-500/30"
-                        : "text-neutral-400 hover:text-white hover:bg-neutral-800/50"
+                        ? "border border-blue-500/30 bg-gradient-to-r from-blue-600/20 to-purple-600/20 text-white"
+                        : "text-neutral-400 hover:bg-neutral-800/50 hover:text-white"
                     }`}
                   >
                     <Icon className="h-4 w-4" />
@@ -66,7 +66,7 @@ export default function Header() {
             </nav>
 
             {/* Mobile Navigation */}
-            <div className="md:hidden flex items-center space-x-1">
+            <div className="flex items-center space-x-1 md:hidden">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = pathname === item.href;
@@ -75,10 +75,10 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`flex items-center justify-center p-2 rounded-lg font-medium transition-all duration-200 ${
+                    className={`flex items-center justify-center rounded-lg p-2 font-medium transition-all duration-200 ${
                       isActive
-                        ? "bg-gradient-to-r from-blue-600/20 to-purple-600/20 text-white border border-blue-500/30"
-                        : "text-neutral-400 hover:text-white hover:bg-neutral-800/50"
+                        ? "border border-blue-500/30 bg-gradient-to-r from-blue-600/20 to-purple-600/20 text-white"
+                        : "text-neutral-400 hover:bg-neutral-800/50 hover:text-white"
                     }`}
                   >
                     <Icon className="h-4 w-4" />
