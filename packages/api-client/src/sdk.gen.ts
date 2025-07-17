@@ -35,6 +35,9 @@ import type {
   GetTransactionsData,
   GetTransactionsResponse,
   GetTransactionsError,
+  RunEnrichData,
+  RunEnrichResponse,
+  RunEnrichError,
   GetAccountsData,
   GetAccountsResponse,
   GetAccountsError,
@@ -44,6 +47,9 @@ import type {
   GetConnectionsData,
   GetConnectionsResponse,
   GetConnectionsError,
+  GetAvailableInstitutionsData,
+  GetAvailableInstitutionsResponse,
+  GetAvailableInstitutionsError,
   CreateGocardlessConnectionData,
   CreateGocardlessConnectionResponse,
   CreateGocardlessConnectionError,
@@ -242,6 +248,22 @@ export const getTransactions = <ThrowOnError extends boolean = false>(
 };
 
 /**
+ * Run Enrich
+ */
+export const runEnrich = <ThrowOnError extends boolean = false>(
+  options: Options<RunEnrichData, ThrowOnError>
+) => {
+  return (options.client ?? _heyApiClient).post<
+    RunEnrichResponse,
+    RunEnrichError,
+    ThrowOnError
+  >({
+    url: "/transaction/enrich/{account_id}",
+    ...options,
+  });
+};
+
+/**
  * Get Accounts
  */
 export const getAccounts = <ThrowOnError extends boolean = false>(
@@ -285,6 +307,24 @@ export const getConnections = <ThrowOnError extends boolean = false>(
     ThrowOnError
   >({
     url: "/connection",
+    ...options,
+  });
+};
+
+/**
+ * Get Available Institutions
+ * Get available institutions (banks) from GoCardless.
+ * Optionally filter by country code (e.g., 'DE' for Germany, 'NL' for Netherlands).
+ */
+export const getAvailableInstitutions = <ThrowOnError extends boolean = false>(
+  options: Options<GetAvailableInstitutionsData, ThrowOnError>
+) => {
+  return (options.client ?? _heyApiClient).get<
+    GetAvailableInstitutionsResponse,
+    GetAvailableInstitutionsError,
+    ThrowOnError
+  >({
+    url: "/connection/institutions",
     ...options,
   });
 };

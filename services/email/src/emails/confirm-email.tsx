@@ -43,10 +43,10 @@ export default function ConfirmEmail({
           : "Confirm your email address for Koru"}
       </Preview>
       <Tailwind config={tailwindConfig}>
-        <Body className="bg-[#0D0D0D] m-auto p-5 font-sans">
-          <Container className="mx-auto bg-[#121212] border border-[#333333] rounded-lg w-full max-w-[600px] overflow-hidden">
+        <Body className="m-auto bg-[#0D0D0D] p-5 font-sans">
+          <Container className="mx-auto w-full max-w-[600px] overflow-hidden rounded-lg border border-[#333333] bg-[#121212]">
             {/* Header */}
-            <Section className="p-6 bg-black border-b border-[#333333]">
+            <Section className="border-b border-[#333333] bg-black p-6">
               <Img
                 src="https://koru.cash/logos/dark_flat.png"
                 alt="Koru"
@@ -57,17 +57,17 @@ export default function ConfirmEmail({
 
             {/* Content */}
             <Section className="p-8">
-              <Text className="text-2xl leading-8 font-bold text-white m-0 mb-6">
+              <Text className="m-0 mb-6 text-2xl font-bold leading-8 text-white">
                 Verify your email
               </Text>
-              <Text className="text-base leading-6 text-[#D1D1D1] my-4">
+              <Text className="my-4 text-base leading-6 text-[#D1D1D1]">
                 Hey
                 {name && (
-                  <span className="text-white font-semibold">{name}</span>
+                  <span className="font-semibold text-white">{name}</span>
                 )}
                 ,
               </Text>
-              <Text className="text-base leading-6 text-[#D1D1D1] my-4">
+              <Text className="my-4 text-base leading-6 text-[#D1D1D1]">
                 {type === "waitlist"
                   ? "Thanks for joining the Koru waitlist! Please confirm your email address so we can keep you updated."
                   : "Thanks for joining Koru! Please confirm your email address to finish setting up your account."}
@@ -77,20 +77,20 @@ export default function ConfirmEmail({
               <Section className="my-8 text-center">
                 <Button
                   href={confirmationLink}
-                  className="bg-[#6355FF] rounded-md text-white font-semibold text-base py-3 px-6 inline-block no-underline"
+                  className="inline-block rounded-md bg-[#6355FF] px-6 py-3 text-base font-semibold text-white no-underline"
                 >
                   Verify My Email
                 </Button>
               </Section>
 
               {/* Expiration notice */}
-              <Section className="my-6 p-4 bg-[#1A1A1A] border border-[#333333] rounded-md">
+              <Section className="my-6 rounded-md border border-[#333333] bg-[#1A1A1A] p-4">
                 <Row>
-                  <Column className="align-middle w-6 pt-1">
+                  <Column className="w-6 pt-1 align-middle">
                     <Clock size={20} color="#FFD700" strokeWidth={3} />
                   </Column>
                   <Column className="align-middle">
-                    <Text className="text-sm leading-5 text-[#FFD700] m-0">
+                    <Text className="m-0 text-sm leading-5 text-[#FFD700]">
                       This verification link expires in{" "}
                       <span className="font-bold">{expirationHours} hours</span>
                     </Text>
@@ -98,28 +98,28 @@ export default function ConfirmEmail({
                 </Row>
               </Section>
 
-              <Text className="text-base leading-6 text-[#D1D1D1] my-4">
+              <Text className="my-4 text-base leading-6 text-[#D1D1D1]">
                 If you didn't sign up for{" "}
                 {type === "waitlist" ? "the waitlist" : "an account"}, you can
                 safely ignore this email.
               </Text>
 
-              <Hr className="border-[#333333] my-8" />
+              <Hr className="my-8 border-[#333333]" />
 
               {/* Fallback link */}
-              <Text className="text-sm leading-5 text-[#AAAAAA] my-2">
+              <Text className="my-2 text-sm leading-5 text-[#AAAAAA]">
                 If the button doesn't work, paste this URL into your browser:
               </Text>
               <Link
                 href={confirmationLink}
-                className="text-xs leading-5 text-[#6355FF] break-all my-2 mb-6"
+                className="my-2 mb-6 break-all text-xs leading-5 text-[#6355FF]"
               >
                 {confirmationLink}
               </Link>
 
               {/* Security note */}
-              <Section className="mt-8 p-4 bg-[#1A1A1A] rounded-md border border-[#333333]">
-                <Text className="text-xs leading-5 text-[#999999] m-0">
+              <Section className="mt-8 rounded-md border border-[#333333] bg-[#1A1A1A] p-4">
+                <Text className="m-0 text-xs leading-5 text-[#999999]">
                   This is an automated message from Koru. Please do not reply to
                   this email. For security reasons, we'll never ask for your
                   password or personal information.
@@ -128,8 +128,8 @@ export default function ConfirmEmail({
             </Section>
 
             {/* Footer */}
-            <Section className="bg-black p-6 border-t border-[#333333] text-center">
-              <Text className="text-xs leading-5 text-[#999999] m-0">
+            <Section className="border-t border-[#333333] bg-black p-6 text-center">
+              <Text className="m-0 text-xs leading-5 text-[#999999]">
                 © {new Date().getFullYear()} Koru. All rights reserved.
               </Text>
             </Section>

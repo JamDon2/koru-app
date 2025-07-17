@@ -12,9 +12,11 @@ import {
   importGocardless,
   getTaskStatus,
   getTransactions,
+  runEnrich,
   getAccounts,
   getAccountStatistics,
   getConnections,
+  getAvailableInstitutions,
   createGocardlessConnection,
   gocardlessCallback,
   getHcaptchaSitekey,
@@ -50,9 +52,13 @@ import type {
   GetTransactionsData,
   GetTransactionsError,
   GetTransactionsResponse,
+  RunEnrichData,
+  RunEnrichError,
+  RunEnrichResponse,
   GetAccountsData,
   GetAccountStatisticsData,
   GetConnectionsData,
+  GetAvailableInstitutionsData,
   CreateGocardlessConnectionData,
   CreateGocardlessConnectionError,
   CreateGocardlessConnectionResponse,
@@ -557,6 +563,54 @@ export const getTransactionsInfiniteOptions = (
   );
 };
 
+export const runEnrichQueryKey = (options: Options<RunEnrichData>) =>
+  createQueryKey("runEnrich", options);
+
+/**
+ * Run Enrich
+ */
+export const runEnrichOptions = (options: Options<RunEnrichData>) => {
+  return queryOptions({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await runEnrich({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      });
+      return data;
+    },
+    queryKey: runEnrichQueryKey(options),
+  });
+};
+
+/**
+ * Run Enrich
+ */
+export const runEnrichMutation = (
+  options?: Partial<Options<RunEnrichData>>
+): UseMutationOptions<
+  RunEnrichResponse,
+  RunEnrichError,
+  Options<RunEnrichData>
+> => {
+  const mutationOptions: UseMutationOptions<
+    RunEnrichResponse,
+    RunEnrichError,
+    Options<RunEnrichData>
+  > = {
+    mutationFn: async (localOptions) => {
+      const { data } = await runEnrich({
+        ...options,
+        ...localOptions,
+        throwOnError: true,
+      });
+      return data;
+    },
+  };
+  return mutationOptions;
+};
+
 export const getAccountsQueryKey = (options: Options<GetAccountsData>) =>
   createQueryKey("getAccounts", options);
 
@@ -620,6 +674,32 @@ export const getConnectionsOptions = (options: Options<GetConnectionsData>) => {
       return data;
     },
     queryKey: getConnectionsQueryKey(options),
+  });
+};
+
+export const getAvailableInstitutionsQueryKey = (
+  options: Options<GetAvailableInstitutionsData>
+) => createQueryKey("getAvailableInstitutions", options);
+
+/**
+ * Get Available Institutions
+ * Get available institutions (banks) from GoCardless.
+ * Optionally filter by country code (e.g., 'DE' for Germany, 'NL' for Netherlands).
+ */
+export const getAvailableInstitutionsOptions = (
+  options: Options<GetAvailableInstitutionsData>
+) => {
+  return queryOptions({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await getAvailableInstitutions({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      });
+      return data;
+    },
+    queryKey: getAvailableInstitutionsQueryKey(options),
   });
 };
 

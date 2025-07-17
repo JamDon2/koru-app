@@ -122,6 +122,18 @@ export type ImportRequisitionResponse = {
   task_id: string;
 };
 
+export type Institution = {
+  id: string;
+  name: string;
+  bic: string;
+  transaction_total_days: number;
+  countries: Array<string>;
+  logo: string;
+  supported_features?: Array<string> | null;
+  identification_codes?: Array<string> | null;
+  max_access_valid_for_days: number;
+};
+
 export type Merchant = {
   created_at?: string;
   updated_at?: string;
@@ -620,6 +632,51 @@ export type GetTransactionsResponses = {
 export type GetTransactionsResponse =
   GetTransactionsResponses[keyof GetTransactionsResponses];
 
+export type RunEnrichData = {
+  body?: never;
+  path: {
+    account_id: string;
+  };
+  query?: never;
+  url: "/transaction/enrich/{account_id}";
+};
+
+export type RunEnrichErrors = {
+  /**
+   * Bad Request
+   */
+  400: ErrorResponse;
+  /**
+   * Unauthorized
+   */
+  401: ErrorResponse;
+  /**
+   * Forbidden
+   */
+  403: ErrorResponse;
+  /**
+   * Not Found
+   */
+  404: ErrorResponse;
+  /**
+   * Validation Error
+   */
+  422: HttpValidationError;
+};
+
+export type RunEnrichError = RunEnrichErrors[keyof RunEnrichErrors];
+
+export type RunEnrichResponses = {
+  /**
+   * Successful Response
+   */
+  200: {
+    [key: string]: string;
+  };
+};
+
+export type RunEnrichResponse = RunEnrichResponses[keyof RunEnrichResponses];
+
 export type GetAccountsData = {
   body?: never;
   path?: never;
@@ -747,6 +804,51 @@ export type GetConnectionsResponses = {
 
 export type GetConnectionsResponse =
   GetConnectionsResponses[keyof GetConnectionsResponses];
+
+export type GetAvailableInstitutionsData = {
+  body?: never;
+  path?: never;
+  query?: {
+    country?: string | null;
+  };
+  url: "/connection/institutions";
+};
+
+export type GetAvailableInstitutionsErrors = {
+  /**
+   * Bad Request
+   */
+  400: ErrorResponse;
+  /**
+   * Unauthorized
+   */
+  401: ErrorResponse;
+  /**
+   * Forbidden
+   */
+  403: ErrorResponse;
+  /**
+   * Not Found
+   */
+  404: ErrorResponse;
+  /**
+   * Validation Error
+   */
+  422: HttpValidationError;
+};
+
+export type GetAvailableInstitutionsError =
+  GetAvailableInstitutionsErrors[keyof GetAvailableInstitutionsErrors];
+
+export type GetAvailableInstitutionsResponses = {
+  /**
+   * Successful Response
+   */
+  200: Array<Institution>;
+};
+
+export type GetAvailableInstitutionsResponse =
+  GetAvailableInstitutionsResponses[keyof GetAvailableInstitutionsResponses];
 
 export type CreateGocardlessConnectionData = {
   body: CreateGocardlessConnection;

@@ -10,6 +10,7 @@ from api.core.gocardless import (
     CreateRequisitionResponse,
     GoCardlessAPIError,
     create_requisition,
+    get_institutions,
     get_requisition,
 )
 from api.core.redis import get_gocardless_requisition, store_gocardless_requisition
@@ -17,6 +18,7 @@ from api.db.database import get_db
 from api.dependencies import get_user
 from api.models.connection import Connection, ConnectionRead, ConnectionType
 from api.models.user import User
+from api.schemas.gocardless import Institution
 from api.tasks.gocardless import import_requisition
 
 router = APIRouter(prefix="/connection", tags=["Account Connection"])
@@ -33,6 +35,24 @@ def get_connections(
             select(Connection).where(Connection.user_id == user.id)
         ).all()
     ]
+
+
+@router.get("/institutions")
+def get_available_institutions(
+    user: Annotated[User, Depends(get_user)],
+    country: str | None = None,
+) -> list[Institution]:
+    """
+    Get available institutions (banks) from GoCardless.
+    Optionally filter by country code (e.g., 'DE' for Germany, 'NL' for Netherlands).
+    """
+    try:
+        institutions = get_institutions(country)
+        return institutions
+    except GoCardlessAPIError as e:
+        # Log the error but return an empty list to avoid breaking the frontend
+        print(f"Error fetching institutions: {e}")
+        return []
 
 
 class CreateGocardlessConnection(BaseModel):

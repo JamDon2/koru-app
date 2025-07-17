@@ -129,13 +129,13 @@ export default function SignIn() {
           contentContainerStyle={{ flexGrow: 1 }}
           keyboardShouldPersistTaps="handled"
         >
-          <View className="flex-1 px-6 justify-center">
+          <View className="flex-1 justify-center px-6">
             {/* Header */}
             <View className="mb-8">
-              <Text className="text-3xl font-bold text-white text-center mb-2">
+              <Text className="mb-2 text-center text-3xl font-bold text-white">
                 Welcome Back
               </Text>
-              <Text className="text-base text-gray-400 text-center">
+              <Text className="text-center text-base text-gray-400">
                 Sign in to continue to your account
               </Text>
             </View>
@@ -144,11 +144,11 @@ export default function SignIn() {
             <View className="space-y-4">
               {/* Email Field */}
               <View>
-                <Text className="text-sm font-medium text-gray-300 mb-2">
+                <Text className="mb-2 text-sm font-medium text-gray-300">
                   Email
                 </Text>
                 <TextInput
-                  className={`bg-gray-800 px-4 py-3 rounded-lg text-white ${
+                  className={`rounded-lg bg-gray-800 px-4 py-3 text-white ${
                     emailError ? "border border-red-500" : ""
                   }`}
                   placeholder="Enter your email"
@@ -163,7 +163,7 @@ export default function SignIn() {
                   autoCorrect={false}
                 />
                 {emailError ? (
-                  <Text className="text-xs text-red-500 mt-1">
+                  <Text className="mt-1 text-xs text-red-500">
                     {emailError}
                   </Text>
                 ) : null}
@@ -171,11 +171,11 @@ export default function SignIn() {
 
               {/* Password Field */}
               <View>
-                <Text className="text-sm font-medium text-gray-300 mb-2">
+                <Text className="mb-2 text-sm font-medium text-gray-300">
                   Password
                 </Text>
                 <TextInput
-                  className={`bg-gray-800 px-4 py-3 rounded-lg text-white ${
+                  className={`rounded-lg bg-gray-800 px-4 py-3 text-white ${
                     passwordError ? "border border-red-500" : ""
                   }`}
                   placeholder="Enter your password"
@@ -189,7 +189,7 @@ export default function SignIn() {
                   autoCapitalize="none"
                 />
                 {passwordError ? (
-                  <Text className="text-xs text-red-500 mt-1">
+                  <Text className="mt-1 text-xs text-red-500">
                     {passwordError}
                   </Text>
                 ) : null}
@@ -197,8 +197,8 @@ export default function SignIn() {
 
               {/* Error Message */}
               {isError && (
-                <View className="bg-red-500/10 border border-red-500/20 rounded-lg p-3 mt-2">
-                  <Text className="text-sm text-red-400 text-center">
+                <View className="mt-2 rounded-lg border border-red-500/20 bg-red-500/10 p-3">
+                  <Text className="text-center text-sm text-red-400">
                     Invalid credentials or captcha verification failed. Please
                     try again.
                   </Text>
@@ -209,7 +209,7 @@ export default function SignIn() {
               <Pressable
                 onPress={() => captchaForm.current?.show()}
                 disabled={isLoading}
-                className={`mt-6 py-4 rounded-lg ${
+                className={`mt-6 rounded-lg py-4 ${
                   isLoading
                     ? "bg-indigo-700"
                     : "bg-indigo-600 active:bg-indigo-700"
@@ -218,7 +218,7 @@ export default function SignIn() {
                 {isLoading ? (
                   <ActivityIndicator color="white" />
                 ) : (
-                  <Text className="text-white font-semibold text-center text-base">
+                  <Text className="text-center text-base font-semibold text-white">
                     Sign In
                   </Text>
                 )}

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon -e * --ignore dev.db",
+    "dev": "nodemon -e \"*\" --ignore dev.db",
     "lint": "uv run ruff check . && uv run mypy .",
     "format": "uv run ruff format .",
     "start": "uv run uvicorn api.main:app --host 0.0.0.0 --port 8000 --app-dir .",

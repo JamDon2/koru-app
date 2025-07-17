@@ -9,9 +9,9 @@ import Colors from "@/constants/Colors";
 export default function EditScreenInfo({ path }: { path: string }) {
   return (
     <View>
-      <View className="items-center mx-12">
+      <View className="mx-12 items-center">
         <Text
-          className="text-lg leading-6 text-center"
+          className="text-center text-lg leading-6"
           lightColor="rgba(0,0,0,0.8)"
           darkColor="rgba(255,255,255,0.8)"
         >
@@ -27,7 +27,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
         </View>
 
         <Text
-          className="text-lg leading-6 text-center"
+          className="text-center text-lg leading-6"
           lightColor="rgba(0,0,0,0.8)"
           darkColor="rgba(255,255,255,0.8)"
         >
@@ -36,7 +36,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
         </Text>
       </View>
 
-      <View className="mt-4 mx-5 items-center">
+      <View className="mx-5 mt-4 items-center">
         <ExternalLink
           className="py-4"
           href="https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet"

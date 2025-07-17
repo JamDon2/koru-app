@@ -41,8 +41,8 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex flex-col items-center justify-center p-4 overflow-x-hidden">
-      <main className="flex flex-col items-center justify-center text-center max-w-4xl w-full">
+    <div className="flex min-h-screen flex-col items-center justify-center overflow-x-hidden bg-gradient-to-b from-gray-900 to-black p-4 text-white">
+      <main className="flex w-full max-w-4xl flex-col items-center justify-center text-center">
         <Image
           src="/logos/dark_flat.png"
           alt="Koru Logo"
@@ -52,9 +52,9 @@ export default function LandingPage() {
           className="mb-2"
         />
 
-        <h1 className="text-6xl md:text-8xl font-extrabold mb-3">Koru</h1>
+        <h1 className="mb-3 text-6xl font-extrabold md:text-8xl">Koru</h1>
 
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">
+        <h1 className="mb-6 text-4xl font-bold md:text-6xl">
           <span className="">
             <span className="">Your Finances</span>,{" "}
             <span className="bg-gradient-to-r from-indigo-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_18px_rgba(129,140,248,0.4)]">
@@ -63,7 +63,7 @@ export default function LandingPage() {
           </span>
         </h1>
 
-        <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl">
+        <p className="mb-10 max-w-2xl text-lg text-gray-300 md:text-xl">
           Manage your money across multiple currencies with Koru. Experience
           seamless, automatic transaction imports from all your banks and get
           true clarity on your financial world. Stop juggling, start thriving.
@@ -71,7 +71,7 @@ export default function LandingPage() {
 
         <form
           onSubmit={handleSubmit}
-          className="w-full max-w-md flex flex-col sm:flex-row gap-3"
+          className="flex w-full max-w-md flex-col gap-3 sm:flex-row"
         >
           <input
             type="email"
@@ -79,17 +79,17 @@ export default function LandingPage() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
             required
-            className="flex-grow px-4 py-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:ring-2 focus:ring-indigo-500 outline-none transition-all duration-300"
+            className="flex-grow rounded-md border border-gray-700 bg-gray-800 px-4 py-3 text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-indigo-500"
             aria-label="Email for waitlist"
           />
           <button
             type="submit"
             disabled={loading}
-            className="bg-indigo-600 hover:bg-indigo-700 cursor-pointer text-white font-semibold px-6 py-3 rounded-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+            className="flex cursor-pointer items-center justify-center rounded-md bg-indigo-600 px-6 py-3 font-semibold text-white transition-all duration-300 hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {loading ? (
               <svg
-                className="animate-spin h-5 w-5 text-white"
+                className="h-5 w-5 animate-spin text-white"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -114,7 +114,7 @@ export default function LandingPage() {
           </button>
         </form>
 
-        <span className="text-gray-500 text-sm mt-2">
+        <span className="mt-2 text-sm text-gray-500">
           Your privacy matters. No spam, just important updates and early
           access.
         </span>

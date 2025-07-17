@@ -8,7 +8,8 @@
     "build": "tsup src/index.ts",
     "start": "node dist/index.cjs",
     "dev": "nodemon --watch src --exec tsx src/index.ts",
-    "email:dev": "email dev --dir src/emails"
+    "email:dev": "email dev --dir src/emails",
+    "format": "prettier --write ."
   },
   "packageManager": "pnpm@10.10.0",
   "dependencies": {

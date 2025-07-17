@@ -10,6 +10,7 @@ import {
   Wallet,
   TrendingUp,
 } from "lucide-react";
+import PrivateText from "@/components/ui/private-text";
 
 // We need to prevent static generation, since the API is not available at build time
 export const dynamic = "force-dynamic";
@@ -71,81 +72,85 @@ export default async function Dashboard() {
     accounts?.reduce((sum, account) => sum + account.balance, 0) ?? 0;
 
   return (
-    <div className="min-h-full bg-gradient-to-br from-background via-background to-background/95 p-6">
+    <div className="from-background via-background to-background/95 min-h-full bg-gradient-to-br p-6">
       <div className="mx-auto max-w-7xl space-y-8">
         {/* Overview Cards */}
-        <div className="grid gap-4 md:gap-6 md:grid-cols-3">
-          <Card className="bg-gradient-to-br from-sky-500/10 to-blue-600/10 border-sky-500/40 md:py-6 py-4 gap-2 md:gap-4">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-0 px-4 md:px-6">
+        <div className="grid gap-4 md:grid-cols-3 md:gap-6">
+          <Card className="gap-2 border-sky-500/40 bg-gradient-to-br from-sky-500/10 to-blue-600/10 py-4 md:gap-4 md:py-6">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 px-4 pb-0 md:px-6">
               <CardTitle className="text-sm font-medium text-sky-300">
                 Total Balance
               </CardTitle>
               <TrendingUp className="h-4 w-4 text-sky-400" />
             </CardHeader>
             <CardContent className="px-4 md:px-6">
-              <div className="text-2xl md:text-3xl font-bold text-white">
-                {formatCurrency(totalBalance, "EUR")}
+              <div className="text-2xl font-bold text-white md:text-3xl">
+                <PrivateText>{formatCurrency(totalBalance, "EUR")}</PrivateText>
               </div>
-              <p className="text-xs text-sky-300/80 mt-1">
+              <p className="mt-1 text-xs text-sky-300/80">
                 Across {accounts?.length} accounts
               </p>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-emerald-500/10 to-green-600/10 border-emerald-500/40 md:py-6 py-4 gap-2 md:gap-4">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-0 px-4 md:px-6">
+          <Card className="gap-2 border-emerald-500/40 bg-gradient-to-br from-emerald-500/10 to-green-600/10 py-4 md:gap-4 md:py-6">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 px-4 pb-0 md:px-6">
               <CardTitle className="text-sm font-medium text-emerald-300">
                 Monthly Income
               </CardTitle>
               <ArrowUpRight className="h-4 w-4 text-emerald-400" />
             </CardHeader>
             <CardContent className="px-4 md:px-6">
-              <div className="text-2xl md:text-3xl font-bold text-white">
-                {formatCurrency(statistics?.last_30d_income ?? 0, "EUR")}
+              <div className="text-2xl font-bold text-white md:text-3xl">
+                <PrivateText>
+                  {formatCurrency(statistics?.last_30d_income ?? 0, "EUR")}
+                </PrivateText>
               </div>
-              <p className="text-xs text-emerald-300/80 mt-1">Last 30 days</p>
+              <p className="mt-1 text-xs text-emerald-300/80">Last 30 days</p>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-red-500/10 to-rose-600/10 border-red-500/40 md:py-6 py-4 gap-2 md:gap-4">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-0 px-4 md:px-6">
+          <Card className="gap-2 border-red-500/40 bg-gradient-to-br from-red-500/10 to-rose-600/10 py-4 md:gap-4 md:py-6">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 px-4 pb-0 md:px-6">
               <CardTitle className="text-sm font-medium text-red-300">
                 Monthly Expenses
               </CardTitle>
               <ArrowDownRight className="h-4 w-4 text-red-400" />
             </CardHeader>
             <CardContent className="px-4 md:px-6">
-              <div className="text-2xl md:text-3xl font-bold text-white">
-                {formatCurrency(statistics?.last_30d_expense ?? 0, "EUR")}
+              <div className="text-2xl font-bold text-white md:text-3xl">
+                <PrivateText>
+                  {formatCurrency(statistics?.last_30d_expense ?? 0, "EUR")}
+                </PrivateText>
               </div>
-              <p className="text-xs text-red-300/80 mt-1">Last 30 days</p>
+              <p className="mt-1 text-xs text-red-300/80">Last 30 days</p>
             </CardContent>
           </Card>
         </div>
 
         <div className="grid gap-6 lg:grid-cols-3">
           {/* Accounts */}
-          <Card className="lg:col-span-1 gap-2 md:gap-4 min-w-0">
+          <Card className="min-w-0 gap-2 md:gap-4 lg:col-span-1">
             <CardHeader>
               <CardTitle className="text-white">Accounts</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3 min-w-0">
+            <CardContent className="min-w-0 space-y-3">
               {accounts?.map((account) => (
                 <div
                   key={account.id}
-                  className="group p-4 rounded-lg bg-card/50 border border-border/50 hover:bg-card/80 transition-all duration-200 hover:shadow-lg min-w-0"
+                  className="bg-card/50 border-border/50 hover:bg-card/80 group min-w-0 rounded-lg border p-4 transition-all duration-200 hover:shadow-lg"
                 >
-                  <div className="flex flex-col xl:flex-row xl:items-start xl:justify-between space-y-3 xl:space-y-0">
+                  <div className="flex flex-col space-y-3 xl:flex-row xl:items-start xl:justify-between xl:space-y-0">
                     {/* Left side: Icon, name, and type */}
-                    <div className="flex items-center space-x-3 min-w-0 xl:flex-1">
-                      <div className="p-2 rounded-full bg-muted/20 group-hover:bg-muted/30 transition-colors">
+                    <div className="flex min-w-0 items-center space-x-3 xl:flex-1">
+                      <div className="bg-muted/20 group-hover:bg-muted/30 rounded-full p-2 transition-colors">
                         {getAccountIcon(account.iso_account_type ?? "")}
                       </div>
                       <div className="min-w-0 flex-1">
-                        <p className="font-medium text-white truncate">
+                        <p className="truncate font-medium text-white">
                           {account.name}
                         </p>
-                        <p className="text-xs text-muted-foreground/60">
+                        <p className="text-muted-foreground/60 text-xs">
                           {account.iso_account_type === "CACC"
                             ? "Checking"
                             : account.iso_account_type === "SVGS"
@@ -158,37 +163,46 @@ export default async function Dashboard() {
                     </div>
 
                     {/* Right side: Amount */}
-                    <div className="xl:text-right xl:ml-4 xl:flex-shrink-0">
+                    <div className="xl:ml-4 xl:flex-shrink-0 xl:text-right">
                       <p
-                        className={`text-lg font-semibold whitespace-nowrap ${
+                        className={`whitespace-nowrap text-lg font-semibold ${
                           account.balance >= 0
                             ? "text-emerald-400"
                             : "text-red-400"
                         }`}
                       >
-                        {formatCurrency(account.balance, account.currency)}
+                        <PrivateText>
+                          {formatCurrency(account.balance, account.currency)}
+                        </PrivateText>
                       </p>
                     </div>
                   </div>
 
                   {/* IBAN - always at bottom */}
-                  <div className="xl:mt-2 min-w-0">
-                    <p className="text-xs text-muted-foreground/60 truncate">
-                      {account.iban}
-                    </p>
-                  </div>
+                  {account.iban && (
+                    <div className="min-w-0 xl:mt-2">
+                      <p className="text-muted-foreground/60 truncate text-xs">
+                        <PrivateText
+                          dots={15}
+                          prefix={account.iban?.slice(0, 2)}
+                        >
+                          {account.iban}
+                        </PrivateText>
+                      </p>
+                    </div>
+                  )}
                 </div>
               ))}
             </CardContent>
           </Card>
 
           {/* Recent Transactions */}
-          <Card className="lg:col-span-2 min-w-0">
+          <Card className="min-w-0 lg:col-span-2">
             <CardHeader>
               <CardTitle className="text-white">
                 Recent Transactions
                 {transactionsResult.error && (
-                  <span className="text-sm text-red-400 ml-2">
+                  <span className="ml-2 text-sm text-red-400">
                     (Error loading)
                   </span>
                 )}
@@ -196,7 +210,7 @@ export default async function Dashboard() {
             </CardHeader>
             <CardContent className="min-w-0">
               {transactions?.length === 0 ? (
-                <div className="text-center py-8 text-muted-foreground">
+                <div className="text-muted-foreground py-8 text-center">
                   {transactionsResult.error
                     ? "Error loading transactions. Try refreshing the page."
                     : "No transactions found. Connect your bank account to see transactions."}
@@ -206,11 +220,11 @@ export default async function Dashboard() {
                   {transactions?.map((transaction) => (
                     <div
                       key={transaction.id}
-                      className="p-4 rounded-lg bg-card/30 border border-border/30 hover:bg-card/60 transition-colors min-w-0"
+                      className="bg-card/30 border-border/30 hover:bg-card/60 min-w-0 rounded-lg border p-4 transition-colors"
                     >
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
+                      <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
                         {/* Left side: Logo and transaction details */}
-                        <div className="flex items-center space-x-4 min-w-0 flex-1">
+                        <div className="flex min-w-0 flex-1 items-center space-x-4">
                           <div className="relative">
                             <MerchantLogo
                               merchantName={
@@ -225,7 +239,7 @@ export default async function Dashboard() {
                               }
                             />
                             <div
-                              className={`absolute -bottom-1 -right-1 h-5 w-5 rounded-full border-2 border-card flex items-center justify-center ${
+                              className={`border-card absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full border-2 ${
                                 transaction.amount > 0
                                   ? "bg-emerald-500"
                                   : "bg-red-500"
@@ -238,14 +252,14 @@ export default async function Dashboard() {
                               )}
                             </div>
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="font-medium text-white truncate">
+                          <div className="min-w-0 flex-1">
+                            <p className="truncate font-medium text-white">
                               {transaction.opposing_account?.name ||
                                 transaction.opposing_merchant?.name ||
                                 transaction.opposing_counterparty?.name ||
                                 transaction.opposing_name}
                             </p>
-                            <p className="text-xs text-muted-foreground/60">
+                            <p className="text-muted-foreground/60 text-xs">
                               {transaction.account.name} •{" "}
                               {transaction.opposing_merchant?.category ||
                                 "Uncategorized"}{" "}
@@ -257,25 +271,29 @@ export default async function Dashboard() {
                         {/* Right side: Amount and original currency if different */}
                         <div className="text-right">
                           <p
-                            className={`font-semibold text-lg whitespace-nowrap ${
+                            className={`whitespace-nowrap text-lg font-semibold ${
                               transaction.amount > 0
                                 ? "text-emerald-400"
                                 : "text-red-400"
                             }`}
                           >
-                            {transaction.amount > 0 ? "+" : ""}
-                            {formatCurrency(
-                              transaction.native_amount,
-                              transaction.account.currency
-                            )}
+                            <PrivateText>
+                              {transaction.amount > 0 ? "+" : ""}
+                              {formatCurrency(
+                                transaction.native_amount,
+                                transaction.account.currency
+                              )}
+                            </PrivateText>
                           </p>
                           {transaction.currency !==
                             transaction.account.currency && (
-                            <p className="text-xs text-muted-foreground/60 whitespace-nowrap">
-                              {formatCurrency(
-                                transaction.amount,
-                                transaction.currency
-                              )}
+                            <p className="text-muted-foreground/60 whitespace-nowrap text-xs">
+                              <PrivateText>
+                                {formatCurrency(
+                                  transaction.amount,
+                                  transaction.currency
+                                )}
+                              </PrivateText>
                             </p>
                           )}
                         </div>
