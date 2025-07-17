@@ -16,6 +16,7 @@ import {
   getAccounts,
   getAccountStatistics,
   getConnections,
+  getAvailableInstitutions,
   createGocardlessConnection,
   gocardlessCallback,
   getHcaptchaSitekey,
@@ -57,6 +58,7 @@ import type {
   GetAccountsData,
   GetAccountStatisticsData,
   GetConnectionsData,
+  GetAvailableInstitutionsData,
   CreateGocardlessConnectionData,
   CreateGocardlessConnectionError,
   CreateGocardlessConnectionResponse,
@@ -672,6 +674,32 @@ export const getConnectionsOptions = (options: Options<GetConnectionsData>) => {
       return data;
     },
     queryKey: getConnectionsQueryKey(options),
+  });
+};
+
+export const getAvailableInstitutionsQueryKey = (
+  options: Options<GetAvailableInstitutionsData>
+) => createQueryKey("getAvailableInstitutions", options);
+
+/**
+ * Get Available Institutions
+ * Get available institutions (banks) from GoCardless.
+ * Optionally filter by country code (e.g., 'DE' for Germany, 'NL' for Netherlands).
+ */
+export const getAvailableInstitutionsOptions = (
+  options: Options<GetAvailableInstitutionsData>
+) => {
+  return queryOptions({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await getAvailableInstitutions({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      });
+      return data;
+    },
+    queryKey: getAvailableInstitutionsQueryKey(options),
   });
 };
 

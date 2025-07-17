@@ -23,9 +23,11 @@ import {
   Activity,
   AlertCircle,
   CheckCircle2,
+  Plus,
 } from "lucide-react";
 import { useState, useMemo } from "react";
 import PrivateText from "@/components/ui/private-text";
+import { ConnectAccountModal } from "@/components/ConnectAccountModal";
 
 const formatCurrency = (amount: number, currency: string) => {
   return new Intl.NumberFormat("en-US", {
@@ -113,6 +115,7 @@ export default function AccountsPage() {
   const [showFilters, setShowFilters] = useState(false);
   const [hiddenBalances, setHiddenBalances] = useState<Set<string>>(new Set());
   const [selectedAccount, setSelectedAccount] = useState<string | null>(null);
+  const [showConnectModal, setShowConnectModal] = useState(false);
 
   // Load data using React Query
   const {
@@ -256,12 +259,22 @@ export default function AccountsPage() {
       <div className="mx-auto max-w-7xl space-y-8">
         {/* Header */}
         <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
-          <div>
-            <h1 className="text-3xl font-bold text-white">Accounts</h1>
-            <p className="text-muted-foreground mt-1">
-              {accountSummary.totalAccounts} accounts •{" "}
-              {accountSummary.currencies.join(", ")}
-            </p>
+          <div className="flex flex-col items-start gap-4 md:flex-row md:items-center">
+            <div>
+              <h1 className="text-3xl font-bold text-white">Accounts</h1>
+              <p className="text-muted-foreground mt-1">
+                {accountSummary.totalAccounts} accounts •{" "}
+                {accountSummary.currencies.join(", ")}
+              </p>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowConnectModal(true)}
+            >
+              <Plus className="mr-2 h-4 w-4" />
+              Connect Account
+            </Button>
           </div>
           <div className="flex flex-wrap gap-3">
             <Button
@@ -692,6 +705,11 @@ export default function AccountsPage() {
           </Card>
         )}
       </div>
+
+      <ConnectAccountModal
+        isOpen={showConnectModal}
+        onClose={() => setShowConnectModal(false)}
+      />
     </div>
   );
 }

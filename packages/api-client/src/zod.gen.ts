@@ -133,6 +133,18 @@ export const zImportRequisitionResponse = z.object({
   task_id: z.string(),
 });
 
+export const zInstitution = z.object({
+  id: z.string(),
+  name: z.string(),
+  bic: z.string(),
+  transaction_total_days: z.number().int(),
+  countries: z.array(z.string()),
+  logo: z.string(),
+  supported_features: z.union([z.array(z.string()), z.null()]).optional(),
+  identification_codes: z.union([z.array(z.string()), z.null()]).optional(),
+  max_access_valid_for_days: z.number().int(),
+});
+
 export const zMerchant = z.object({
   created_at: z.string().datetime().optional(),
   updated_at: z.string().datetime().optional(),
@@ -212,6 +224,8 @@ export const zGetAccountsResponse = z.array(zAccountReadWithBalance);
 export const zGetAccountStatisticsResponse = zAccountStatistics;
 
 export const zGetConnectionsResponse = z.array(zConnectionRead);
+
+export const zGetAvailableInstitutionsResponse = z.array(zInstitution);
 
 export const zCreateGocardlessConnectionResponse = zCreateRequisitionResponse;
 

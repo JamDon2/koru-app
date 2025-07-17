@@ -47,6 +47,9 @@ import type {
   GetConnectionsData,
   GetConnectionsResponse,
   GetConnectionsError,
+  GetAvailableInstitutionsData,
+  GetAvailableInstitutionsResponse,
+  GetAvailableInstitutionsError,
   CreateGocardlessConnectionData,
   CreateGocardlessConnectionResponse,
   CreateGocardlessConnectionError,
@@ -304,6 +307,24 @@ export const getConnections = <ThrowOnError extends boolean = false>(
     ThrowOnError
   >({
     url: "/connection",
+    ...options,
+  });
+};
+
+/**
+ * Get Available Institutions
+ * Get available institutions (banks) from GoCardless.
+ * Optionally filter by country code (e.g., 'DE' for Germany, 'NL' for Netherlands).
+ */
+export const getAvailableInstitutions = <ThrowOnError extends boolean = false>(
+  options: Options<GetAvailableInstitutionsData, ThrowOnError>
+) => {
+  return (options.client ?? _heyApiClient).get<
+    GetAvailableInstitutionsResponse,
+    GetAvailableInstitutionsError,
+    ThrowOnError
+  >({
+    url: "/connection/institutions",
     ...options,
   });
 };
